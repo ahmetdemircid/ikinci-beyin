@@ -1,7 +1,8 @@
 # Hedefler
 
-> Her çeyreğin başında güncelle. Biten çeyreği silme, altına indir ve
-> sonucunu yaz.
+> Her çeyreğin başında güncelle. Bu dosya her oturumda yükleniyor: biten
+> çeyreği burada tutma, sonucuyla birlikte `archives/hedefler-gecmisi.md`
+> dosyasının en üstüne ekle.
 
 ## {{CEYREK}}
 

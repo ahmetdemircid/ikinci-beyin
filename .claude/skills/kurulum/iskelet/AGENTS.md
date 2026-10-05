@@ -70,8 +70,10 @@ Klasörü baştan sona tarama. Sırayla şunlara bak:
   düzeltirse `.claude/rules/` altına kalıcı bir kural yazmayı öner.
 - **Aynı iş üçüncü kez gelirse skill öner.** Aynı adımları üçüncü kez
   yapıyorsan `.claude/skills/` altına bir skill yazmayı öner.
-- **Bağlamı güncel tut.** Öncelik değişince `context/current-priorities.md`,
-  çeyrek dönünce `context/goals.md` güncellenir.
+- **Bağlamı güncel ve kısa tut.** Öncelik değişince `context/current-priorities.md`,
+  çeyrek dönünce `context/goals.md` güncellenir. `context/` dosyaları her
+  oturumda yüklenir, her satırı her mesajda token harcar: eskiyen kısmı orada
+  biriktirme, `archives/` altındaki geçmiş dosyasına taşı.
 
 ## Skill'ler
 

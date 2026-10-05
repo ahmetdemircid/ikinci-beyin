@@ -179,9 +179,10 @@ Kullanıcıya sırayla şunları göster:
 3. Kurulumun gerçekten çalıştığını görmek için şu adım (bunu aynen yaz):
 
    > Bu oturumu kapat, yeni bir oturum aç ve hiçbir şey anlatmadan şunu sor:
-   > **"Bu hafta neye odaklanmalıyım?"** Cevap, burada söylediğin somut işlere
-   > ve tarihlere dayanıyorsa kurulum çalışıyor demektir. Genel bir tavsiye
-   > listesi veriyorsa bir yer eksik, `/kurulum guncelle` ile düzeltiriz.
+   > **"Önümüzdeki iki haftada beni neler bekliyor?"** Seni tanımayan bir
+   > asistan bunu bilemez. Cevap burada söylediğin tarihleri ve projeleri
+   > sayıyorsa kurulum çalışıyor demektir. Genel bir tavsiye listesi veriyorsa
+   > bir yer eksik, `/kurulum guncelle` ile düzeltiriz.
 
 4. Bundan sonraki alışkanlık, üç satırla:
    - Oturuma `/gunu-ac` ile başla.

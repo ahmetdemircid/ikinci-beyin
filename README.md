@@ -24,7 +24,7 @@ kalmazsın.
 
 Claude sana tek tek soru soracak (15-20 dakika). Cevaplarına göre klasörleri
 kurup dosyaları dolduracak. Bitince oturumu kapat, yeni oturum aç ve
-**"Bu hafta neye odaklanmalıyım?"** diye sor.
+hiçbir şey anlatmadan **"Önümüzdeki iki haftada beni neler bekliyor?"** diye sor.
 
 Zaten dolu bir çalışma klasörün varsa: bu repodaki `.claude/skills/` klasörünü
 kendi klasörüne kopyala ve orada `/kurulum` yaz. Var olan hiçbir dosya

@@ -71,9 +71,11 @@ Kayıtlar `decisions/log.md` dosyasının en altına eklenir.
 ## 4. Bağlam
 
 - Öncelik değiştiyse `context/current-priorities.md`'yi güncelle. Eski listeyi
-  silme, altına "Önceki liste ({tarih})" başlığıyla indir.
-- Çeyrek hedefi değiştiyse `context/goals.md`'yi güncelle, eski hâli yanına
-  not et.
+  kelimesi kelimesine `archives/oncelikler-gecmisi.md` dosyasının en üstüne
+  "## {tarih}" başlığıyla ekle (dosya yoksa oluştur), sonra
+  current-priorities'te sadece yeni liste kalsın.
+- Çeyrek hedefi değiştiyse `context/goals.md`'yi güncelle. Eski hâli aynı
+  şekilde `archives/hedefler-gecmisi.md`'ye taşı.
 - Geçmişte kalmış ve gerçekleştiği konuşmada doğrulanan tarihleri "Yaklaşan
   tarihler"den çıkar, ilgili DEVAM.md'nin "Geçmiş"ine yaz.
 

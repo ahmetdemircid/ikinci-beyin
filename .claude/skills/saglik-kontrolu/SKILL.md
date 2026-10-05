@@ -59,6 +59,10 @@ hangi başlık altında olduğunu yaz.
 - `AGENTS.md` 150 satırı geçiyor mu?
 - `context/` altındaki her dosya 60 satırı geçiyor mu? Bu dosyalar her
   oturumda yükleniyor, büyüdükçe her mesaj daha çok token harcar.
+- `context/` dosyalarında geçmiş birikmiş mi? ("Önceki liste", biten çeyrek,
+  geçmiş tarihli bölümler.) Önerilen düzeltme: o bölümü kelimesi kelimesine
+  `archives/oncelikler-gecmisi.md` ya da `archives/hedefler-gecmisi.md`
+  dosyasının en üstüne taşımak.
 
 ### K10. Karar günlüğü bütünlüğü
 Git varsa `git log -p --format="%h %cd" --date=short -- decisions/log.md`

@@ -2,8 +2,9 @@
 
 *Son güncelleme: {{BUGUN}}*
 
-> Odak değiştiğinde güncelle. Eski listeyi silme, altına "Önceki liste
-> ({tarih})" başlığıyla indir.
+> Odak değiştiğinde güncelle. Bu dosya her oturumda yükleniyor, kısa kalmalı:
+> eski listeyi burada tutma, `archives/oncelikler-gecmisi.md` dosyasının en
+> üstüne tarihiyle ekle. Silinmez, sadece yer değiştirir.
 
 ## Şu an
 
