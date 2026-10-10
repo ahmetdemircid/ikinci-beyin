@@ -168,7 +168,7 @@ Kullanıcıya göstermeden önce kendin kontrol et:
    iddiayı sen uydurmuşsun.
 3. `CLAUDE.md` içindeki her `@` yolu gerçekten var olan bir dosyayı gösteriyor
    mu?
-4. AGENTS.md 150 satırın altında mı? `<!-- sistem:basla -->` ve
+4. AGENTS.md 200 satırın altında mı? `<!-- sistem:basla -->` ve
    `<!-- sistem:bitir -->` işaretleri yerinde mi? Bu işaretleri silme ya da
    arasına kişisel bilgi yazma: güncelleme o bölümü yeniden yazar.
 
@@ -187,8 +187,49 @@ Kullanıcıya sırayla şunları göster:
    > sayıyorsa kurulum çalışıyor demektir. Genel bir tavsiye listesi veriyorsa
    > bir yer eksik, `/kurulum guncelle` ile düzeltiriz.
 
-4. Bundan sonra nasıl kullanılır, üç satırla (komut ezberlemek gerekmez):
+4. Bundan sonra nasıl kullanılır, dört satırla (komut ezberlemek gerekmez):
    - Oturuma "nerede kalmıştık" ya da "bugün ne yapıyoruz" diye başla.
    - Çalışırken kaydı ben tutarım: proje ilerleyince, karar alınınca o anda
      dosyalara yazarım. İstersen sonunda "bugünlük bu kadar" de, kalanı toparlarım.
+   - Bir işi ikinci kez yaptığımızda onu kalıcı hale getirmeyi öneririm;
+     sonra tek cümleyle yaparım.
    - Haftada bir "klasörü kontrol et" de.
+
+Bu dört maddeyi gösterdikten sonra 7. adıma geç.
+
+## 7. Tekrar eden işler için teklif
+
+Kurulum burada biter; bu adım bir tekliftir, bir kez yapılır, ısrar edilmez.
+Kullanıcı "sonra", "şimdi değil" derse kabul et ve geç.
+
+1. E bölümündeki cevaplara dön ve kısaca hatırlat: "Kurulumda şu işlerin
+   vaktini yediğini söyledin: {E1'deki işler}. En çok {E2'deki iş}
+   devretmek istediğini söyledin."
+2. `.claude/skills/paket-kur/katalog.md` dosyasını oku ve bir kez sor:
+   "AI Builder Kulübü'nden mi geliyorsun? Ahmet'in hazır skill ve
+   sistemlerini buraya kurmamı ister misin?" Bu işlerden biri katalogdaki bir
+   paketle gerçekten örtüşüyorsa onu adıyla söyle ("{E2'deki iş} için
+   {paket adı} paketi var"). Evet derse: paketler kulüpteki derslerin
+   içinde zip olarak duruyor; indirip bu klasöre bırakırsa `/paket-kur`'u
+   çalıştır. Zip henüz elinde yoksa nereden indireceğini söyle ve geç.
+   Hayır derse ya da kulüpte değilse bir daha anma.
+3. Sıfırdan kurma yolunu söyle: "İstersen {E2'deki işi} birlikte de
+   kurabiliriz. Yeni oturumda 'şu işi birlikte yapalım' de, bir kere beraber
+   yaparız, beğenirsen kalıcı hale getiririm." Bunun için
+   `projects/index.md`'ye `ilk-devir` adında bir proje ekle; `DEVAM.md`'sinin
+   "Sıradaki adım"ı: "{E2'deki iş} birlikte bir kez yapılacak, beğenilirse
+   /beceri-ogren ile skill'e çevrilecek." Böylece `/gunu-ac` bunu hatırlatır.
+   Git varsa kayıt al: `git add -A` ve `git commit -m "Ilk devir projesi eklendi"`.
+4. **Skill yazıcısı:** skill'leri en güncel kurallarla yazmak için Anthropic'in
+   resmi `skill-creator` eklentisini öner: "Skill'leri yazarken Anthropic'in
+   resmi skill yazıcısını kullanmak için bir eklenti kurmamı ister misin?
+   Anthropic güncel tutuyor." Evet derse terminalde sırayla çalıştır:
+   `claude plugin marketplace add anthropics/claude-plugins-official`
+   (zaten ekliyse hata verebilir, sorun değil) ve
+   `claude plugin install skill-creator@claude-plugins-official`.
+   Kurulursa "yeni oturumda devreye girer" de. Komut çalışmazsa kullanıcıya
+   oturumda `/plugin install skill-creator@claude-plugins-official` yazmasını
+   söyle. Hayır derse geç; `/beceri-ogren` onsuz da çalışır.
+
+Sonra kapanışı tek cümleyle bitir: "Şimdi bu oturumu kapatıp yeni oturumda
+testi yapabilirsin."

@@ -56,7 +56,7 @@ kalmış tarih.
 hangi başlık altında olduğunu yaz.
 
 ### K9. Boyut
-- `AGENTS.md` 150 satırı geçiyor mu?
+- `AGENTS.md` 200 satırı geçiyor mu?
 - `context/` altındaki her dosya 60 satırı geçiyor mu? Bu dosyalar her
   oturumda yükleniyor, büyüdükçe her mesaj daha çok token harcar.
 - `context/` dosyalarında geçmiş birikmiş mi? ("Önceki liste", biten çeyrek,

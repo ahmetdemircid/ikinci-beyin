@@ -1,6 +1,6 @@
 ---
 name: sistemi-guncelle
-description: İkinci beyin sisteminin yeni sürümünü GitHub'dan çeker. Sadece sistem skill'lerini (kurulum, gunu-ac, gunu-kapat, saglik-kontrolu, sistemi-guncelle) ve AGENTS.md'deki işaretli sistem bölümünü yeniler. Kişisel dosyalara (context/, projects/, decisions/, references/, kullanıcının kendi skill'leri ve kuralları) dokunmaz, eski hâli arşive kopyalar. Kullanıcı "/sistemi-guncelle", "sistemi güncelle", "yeni sürüm var mı", "ikinci beyni güncelle" dediğinde kullan.
+description: İkinci beyin sisteminin yeni sürümünü GitHub'dan çeker. Sadece sistem skill'lerini (kurulum, gunu-ac, gunu-kapat, saglik-kontrolu, beceri-ogren, paket-kur, sistemi-guncelle) ve AGENTS.md'deki işaretli sistem bölümünü yeniler. Kişisel dosyalara (context/, projects/, decisions/, references/, kullanıcının kendi skill'leri ve kuralları) dokunmaz, eski hâli arşive kopyalar. Kullanıcı "/sistemi-guncelle", "sistemi güncelle", "yeni sürüm var mı", "ikinci beyni güncelle" dediğinde kullan.
 ---
 
 # Sistemi güncelle
@@ -10,11 +10,15 @@ Bu klasörde iki tür dosya var:
 - **Sistem dosyaları:** herkeste aynı, yeni sürümle değişebilir. Bunlar:
   `.claude/skills/kurulum/`, `.claude/skills/gunu-ac/`,
   `.claude/skills/gunu-kapat/`, `.claude/skills/saglik-kontrolu/`,
+  `.claude/skills/beceri-ogren/`, `.claude/skills/paket-kur/`,
   `.claude/skills/sistemi-guncelle/` ve `AGENTS.md` içinde
   `<!-- sistem:basla -->` ile `<!-- sistem:bitir -->` arasındaki bölüm.
 - **Kişisel dosyalar:** geri kalan her şey. `context/`, `projects/`,
   `decisions/`, `references/`, `runs/`, `archives/`, `.claude/rules/`,
   kullanıcının kendi skill'leri, `AGENTS.md`'nin işaretler dışındaki kısmı.
+
+Sistem skill'lerinin listesi sürümle büyüyebilir. Güncel liste her zaman
+**yeni sürümdeki** bu dosyada yazandır; 3. adımdan itibaren onu esas al.
 
 **Kişisel dosyalara hiçbir koşulda dokunma.** Sistem dosyasının eski hâlini
 değiştirmeden önce arşive kopyala.
@@ -83,6 +87,12 @@ skill'inin klasörünü ve `AGENTS.md`'nin tamamını oraya kopyala.
   ekle. Eski dosyadaki bir kural iki tarafa da uymuyorsa silme, "Kullanıcının
   eklediği kurallar" bölümüne olduğu gibi taşı. Sonuçta neyi nereye
   koyduğunu kullanıcıya göster.
+- **Yeni sürümle gelen boş dosyalar:** yeni sürümün
+  `.claude/skills/kurulum/iskelet/` klasöründe olup bu klasörde hiç olmayan
+  dosyaları (ör. `references/is-gunlugu.md`) aynı yola kopyala. Var olan
+  dosyaya dokunma. `AGENTS.md`'de işaretlerin üstünde "Senin skill'lerin"
+  bölümü yoksa işaretin hemen üstüne şablondaki gibi ekle; bu, işaret
+  dışına yapılan tek ekleme.
 - **CLAUDE.md:** yeni sürümün `iskelet/CLAUDE.md`'si bu klasördekinden farklıysa
   değiştirme. Farkı göster ve sor.
 

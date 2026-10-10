@@ -30,9 +30,10 @@ CLAUDE.md                AGENTS.md'yi ve bağlam dosyalarını yükler
 context/                 sen, işin, öncelikler, hedefler, yazı örneklerin
 projects/index.md        projelerin haritası, her projede bir DEVAM.md
 decisions/log.md         karar günlüğü, sadece ekleme yapılır
+decisions/reddedilenler.md  reddettiğin fikirler, tekrar önerilmez
 .claude/rules/           kalıcı kurallar (düzeltmeler buraya)
 .claude/skills/          tekrar eden işler
-references/              referans malzeme, şablonlar, kurulum cevapları
+references/              referans, şablonlar, iş günlüğü, gelen kutusu
 runs/                    otomasyon kayıtları
 archives/                hiçbir şey silinmez, buraya taşınır
 ```
@@ -45,8 +46,12 @@ Komut ezberlemen gerekmez, normal konuş:
 |---|---|
 | "Nerede kalmıştık?", "Bugün ne yapıyoruz?" | Yaklaşan tarihleri, projelerin sıradaki adımını ve tek bir "sıradaki iş" önerisini söyler |
 | Normal çalışırsın | Proje ilerleyince, karar alınınca Claude o anda ilgili dosyaya yazar. Kaydetmeyi hatırlaman gerekmez |
+| Bir işi ikinci kez yaptırırsın | Claude "kalıcı hale getireyim mi?" diye bir kez sorar. Evet dersen işi skill'e çevirir, yeni bir oturumda dener, bundan sonra tek cümleyle yapar. İstersen sen de "bunu kalıcı yap" diyebilirsin |
+| Bir fikri reddedersin | Gerekçesiyle kaydedilir, bir daha önerilmez |
+| "Not al: ..." | Gelen kutusuna düşer, sonra birlikte ilgili yere dağıtılır |
 | "Bugünlük bu kadar" | Kalan bir şey varsa toparlar, bu bilgisayarda bir geri dönüş noktası (Git kaydı) alır |
 | "Klasörü kontrol et" (haftada bir) | Dağılan yerleri bulur, onay vermeden düzeltmez |
+| "Paketi kur" | AI Builder Kulübü'nden indirdiğin hazır sistem paketini kurar |
 | "Sistemi güncelle" | Yeni sürümü çeker. Senin bilgilerine, projelerine, kararlarına dokunmaz |
 
 ## Bilgilerin değişince

@@ -72,6 +72,9 @@ Her kararı şu biçimde kullanıcıya göster:
 
 Kayıtlar `decisions/log.md` dosyasının en altına eklenir.
 
+Bu oturumda kullanıcının reddettiği fikir, örnek ya da yaklaşım
+`decisions/reddedilenler.md`'ye yazılmadıysa ekle (biçim AGENTS.md'de).
+
 ## 4. Bağlam
 
 - Öncelik değiştiyse `context/current-priorities.md`'yi güncelle. Eski listeyi
@@ -90,10 +93,12 @@ Sadece öner, kendin skill ya da kural yazma.
 - **Tekrar eden düzeltme:** kullanıcı seni bu oturumda bir konuda düzelttiyse
   ve aynı düzeltme daha önce de olduysa (`.claude/rules/` ya da konuşma),
   `.claude/rules/` altına kalıcı kural yazmayı öner. Kuralın taslağını göster.
-- **Tekrar eden iş:** bu oturumda yapılan bir iş daha önce de aynı adımlarla
-  yapıldıysa (DEVAM.md "Geçmiş" satırları, `runs/`, `context/work.md`
-  "Tekrar eden işler"), bunun bir skill'e dönüşmesini öner. Kaçıncı kez
-  yapıldığını kaynağıyla söyle.
+- **Tekrar eden iş:** bu oturumda kullanıcı için tamamlanan işler
+  `references/is-gunlugu.md`'ye yazılmadıysa önce ekle. Sonra bak: aynı iş
+  günlükte en az iki kez geçiyor, skill'i yok, satırında `sorma` yazmıyor ve
+  bu oturumda zaten sorulmadıysa kalıcı hale getirmeyi bir kez öner. Kaçıncı
+  kez yapıldığını söyle. Evet derse `/beceri-ogren`'i yeni oturumda
+  çalıştırmayı öner (bu oturum kapanıyor).
 
 ## 6. Kaydet
 

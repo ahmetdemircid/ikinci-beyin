@@ -25,6 +25,8 @@ Sırayla ve sadece bunları oku. Proje klasörlerini baştan sona tarama.
 6. Git varsa: `git status --short` (kaydedilmemiş değişiklik var mı) ve
    `git log -1 --format=%cd --date=short` (son kayıt ne zaman).
 7. `runs/` altında son 7 güne ait kayıt varsa onların sonuç satırları.
+8. `references/gelen-kutusu.md`: henüz dağıtılmamış not sayısı ve en eski
+   notun tarihi.
 
 ## 2. Hesapla
 
@@ -73,5 +75,7 @@ Raporun sonunda tek bir soru sor: "{Sıradaki iş} ile mi başlayalım?"
   (emoji, uzunluk vb.).
 - Bir dosya yoksa ya da beklenen bölüm boşsa uydurma. "Dikkat" altına "X
   dosyası yok" yaz ve geç.
+- Gelen kutusunda 7 günden eski dağıtılmamış not varsa "Dikkat" altında
+  "{N} not bekliyor, dağıtalım mı?" yaz.
 - Haftada bir kez sağlık kontrolü yapılmamışsa (`runs/` altında son 7 günde
   `saglik-kontrolu` kaydı yoksa) "Dikkat" altında `/saglik-kontrolu` öner.
