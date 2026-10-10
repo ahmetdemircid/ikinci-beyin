@@ -6,22 +6,18 @@ kalmazsın.
 
 ## Kurulum
 
-**Yol 1: Claude'a kurdur (en kolayı)**
-
 1. Bilgisayarında boş bir klasör aç (adında Türkçe karakter ve boşluk olmasın,
    ör. `ikinci-beyin`). VS Code'da bu klasörü aç, Claude Code'u başlat.
-2. Claude'a şunu yaz (olduğu gibi kopyala):
+2. Claude'a şunu yaz:
 
    ```
-   https://github.com/ahmetdemircid/ikinci-beyin reposunu doğrudan bu klasörün köküne kur, ayrı bir alt klasör açma. Commit geçmişini ya da dosya listesini gösterme. Bitince bana sadece şunu yaz: "Hazır. Şimdi /reload-skills yaz, ardından /kurulum yaz."
+   Bunu kur: https://github.com/ahmetdemircid/ikinci-beyin
    ```
 
-3. Kurulum bitince **`/reload-skills`** yaz. Bu adımı atlama: Claude Code,
-   oturum açıldıktan sonra gelen skill'leri kendiliğinden görmez. İstersen
-   bunun yerine Claude Code'u kapatıp yeniden açabilirsin.
-4. `/kurulum` yaz.
+Claude repoyu indirir ve hemen sana soru sormaya başlar. Başka bir şey yazmana
+gerek yok.
 
-**Yol 2: ZIP indir**
+**ZIP ile**
 
 1. Repo sayfasında yeşil **Code** düğmesi, **Download ZIP**. Zip'i aç.
 2. Açılan klasörü VS Code'da aç, Claude Code'u başlat.
@@ -34,6 +30,23 @@ hiçbir şey anlatmadan **"Önümüzdeki iki haftada beni neler bekliyor?"** diy
 Zaten dolu bir çalışma klasörün varsa: bu repodaki `.claude/skills/` klasörünü
 kendi klasörüne kopyala ve orada `/kurulum` yaz. Var olan hiçbir dosya
 silinmez, taşınmaz.
+
+## Claude için kurulum talimatı
+
+Bu bölüm, bu repoyu kullanıcı için kuran yapay zeka asistanına yazıldı.
+
+1. Dosyalar, kullanıcının açık olduğu klasörün **köküne** gelmeli, alt klasöre
+   değil. Klasör boşsa `git clone https://github.com/ahmetdemircid/ikinci-beyin .`
+   kullan. Alt klasöre klonladıysan içindeki her şeyi (`.git`, `.claude`,
+   `.gitignore`, `.gitattributes` dahil) köke taşı ve boş kalan alt klasörü
+   kaldır. Kökte kullanıcıya ait dosyalar zaten varsa hiçbirinin üstüne yazma,
+   yalnızca `.claude/skills/` klasörünü köke kopyala.
+2. Kullanıcıya commit geçmişi, dosya listesi ya da teknik ayrıntı gösterme.
+   Klonlamanın bittiğini tek cümleyle söyle.
+3. Kullanıcıdan `/reload-skills` ya da `/kurulum` yazmasını isteme. Hemen
+   `.claude/skills/kurulum/SKILL.md` dosyasını oku ve oradaki adımları bu
+   oturumda uygula. O dosyadaki `${CLAUDE_SKILL_DIR}` yolu
+   `.claude/skills/kurulum` demektir.
 
 ## Kurulumdan sonra klasör
 
