@@ -39,7 +39,7 @@ cümleyle söyle.
 
 | Mod | Ne zaman | Ne yaparsın |
 |---|---|---|
-| **İlk kurulum** | Cevaplar dosyası yok. Kökte sadece şablonla gelenler var: `README.md`, `KURULUM.md`, `.gitignore`, `.gitattributes`, `.git`, `.claude/`, `LICENSE` (editörün açtığı `.vscode/` da sayılmaz) | Tüm adımlar sırayla |
+| **İlk kurulum** | Cevaplar dosyası yok. Kökte sadece şablonla gelenler var: `README.md`, `.gitignore`, `.gitattributes`, `.git`, `.claude/`, `LICENSE` (editörün açtığı `.vscode/` da sayılmaz) | Tüm adımlar sırayla |
 | **Devam** | Cevaplar dosyası var, başında `Durum: yarım` yazıyor | Cevaplanmamış ilk sorudan devam et, önceki cevapları tekrar sorma |
 | **Güncelleme** | Cevaplar dosyası var, `Durum: tamamlandı` | Bölümleri listele, hangisinin değiştiğini sor, sadece onu sor ve sadece etkilenen dosyaları güncelle (aşağıda) |
 | **Dolu klasör** | Cevaplar dosyası yok ama kökte başka dosya/klasör var | İlk kurulum gibi, ama 3. adımdaki "dolu klasör" kuralları geçerli |
