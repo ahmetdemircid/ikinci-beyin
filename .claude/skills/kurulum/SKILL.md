@@ -27,6 +27,8 @@ Soruların tamamı `${CLAUDE_SKILL_DIR}/sorular.md` dosyasında. Röportaja baş
 - **Her cevabı anında yaz.** Kullanıcının cevabını hemen
   `references/kurulum-cevaplari.md` dosyasına ekle. Oturum yarıda koparsa
   kaldığın yerden devam edebilmen buna bağlı.
+- **İsme gelen eki Türkçe ses uyumuna göre yaz:** Ahmet'in, Ayşe'nin, Elif'i,
+  Umut'un. Emin değilsen eki gerektirmeyen bir cümle kur.
 - **Kullanıcının sözlerini koru.** Cevapları özetleyip başka kelimelerle yeniden
   yazma. Context dosyaları kısa ve düzenli olabilir, ama ham cevaplar dosyası
   kullanıcının kendi cümleleridir.
@@ -141,11 +143,9 @@ yeni cevabı altına `(güncellendi {tarih})` notuyla ekle.
   `# Satir sonlarini her yerde ayni tutar.` ve `* text=auto eol=lf`.
   Klasörde zaten `.git` varsa `.gitattributes`'a dokunma.
 - `git remote -v` çalıştır. `origin` bu şablonun indirildiği repoyu
-  gösteriyorsa (klasör `git clone` ile geldiyse böyledir) kullanıcıya söyle:
-  "Bu klasör hâlâ şablonun GitHub reposuna bağlı. Artık içinde senin kişisel
-  bilgilerin var, yanlışlıkla oraya gönderilmesin diye bağlantıyı
-  kaldırayım mı?" Evet derse `git remote remove origin` çalıştır. Kendi
-  yedek reposunu bağlamak isterse bunu ayrıca yapar.
+  (`ahmetdemircid/ikinci-beyin`) gösteriyorsa sormadan
+  `git remote remove origin` çalıştır ve tek cümleyle söyle: "Klasörün
+  şablonla bağlantısını kestim, artık sadece sana ait."
 - `.gitignore` içinde şu üç satır yoksa ekle (dosya yoksa oluştur):
   `CLAUDE.local.md`, `.claude/settings.local.json`, `.env`. Bunlar kişisel
   ayar ve şifre dosyaları, paylaşılan kayda girmemeli.

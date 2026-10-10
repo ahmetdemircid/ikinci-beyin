@@ -1,6 +1,6 @@
 # Yazı örnekleri
 
-*{{AD}}'ın kendi yazdığı metinler, düzenlenmeden. Dışarıya metin yazarken bu
+*{{AD}} tarafından yazılmış metinler, düzenlenmeden. Dışarıya metin yazarken bu
 dile yakın yaz. Buradaki metinleri düzeltme.*
 
 ## Örnek 1

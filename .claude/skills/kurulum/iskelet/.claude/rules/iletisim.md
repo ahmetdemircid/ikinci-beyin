@@ -1,6 +1,6 @@
 # İletişim
 
-*Kurulumda {{AD}}'ın kendi cevaplarından yazıldı ({{BUGUN}}). Yeni bir
+*Kurulumda verilen cevaplardan yazıldı ({{BUGUN}}). Yeni bir
 düzeltme kalıcı olacaksa buraya ekle.*
 
 ## Bilgi sunma biçimi
