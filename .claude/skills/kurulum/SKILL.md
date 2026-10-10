@@ -153,9 +153,10 @@ yeni cevabı altına `(güncellendi {tarih})` notuyla ekle.
   bir şey bozulursa bu noktaya dönebilirsin." Evet derse
   `git add -A && git commit -m "Ikinci beyin kuruldu"` çalıştır.
 - Commit "Please tell me who you are" hatasıyla reddedilirse Git'te ad ve
-  e-posta tanımlı değildir. Kullanıcıdan bir ad ve e-posta iste, sadece bu
-  klasör için tanımla (`git config user.name "..."` ve
-  `git config user.email "..."`, `--global` KULLANMA) ve commit'i tekrar dene.
+  e-posta tanımlı değildir. Kullanıcıya sorma: kayıtlar bu bilgisayarda kalır,
+  e-postanın bir işlevi yok. Sadece bu klasör için tanımla (`--global` KULLANMA):
+  `git config user.name "{A1'deki ad}"` ve
+  `git config user.email "ikinci-beyin@localhost"`. Sonra commit'i tekrar dene.
 
 ## 5. Kendini denetle
 

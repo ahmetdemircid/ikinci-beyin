@@ -98,8 +98,8 @@ Git yoksa bu adımı atla ve raporda söyle.
 Git varsa:
 1. `git add -A`
 2. `git commit -m "Gun kapanisi {YYYY-AA-GG}: {en fazla 6 kelimelik ozet}"`
-3. Commit Git'te ad/e-posta olmadığı için reddedilirse `/kurulum` skill'indeki
-   gibi sadece bu klasör için tanımlamayı öner.
+3. Commit Git'te ad/e-posta olmadığı için reddedilirse sormadan `/kurulum` skill'indeki
+   gibi sadece bu klasör için tanımla ve tekrar dene.
 
 `git push` yapma. Kayıt bu bilgisayarda kalır.
 
