@@ -116,7 +116,7 @@ Dosyalardaki `{{...}}` alanlarını cevaplarla doldur. Doldururken:
   yazdıkları yerde kaydet. Taşıma önerin varsa sadece öner, kendin taşıma.
 - Kökte zaten `CLAUDE.md` ya da `AGENTS.md` varsa önce arşive kopyala. Sonra
   eski dosyadaki kişisel kuralları yeni dosyanın "Kullanıcının eklediği kurallar"
-  bölümüne olduğu gibi taşı ve neyi taşıdığını kullanıcıya göster.
+  bölümüne (sistem işaretlerinin üstüne) olduğu gibi taşı ve neyi taşıdığını kullanıcıya göster.
 
 **Güncelleme modunda** sadece değişen bölümün dosyalarını yeniden yaz:
 
@@ -168,7 +168,9 @@ Kullanıcıya göstermeden önce kendin kontrol et:
    iddiayı sen uydurmuşsun.
 3. `CLAUDE.md` içindeki her `@` yolu gerçekten var olan bir dosyayı gösteriyor
    mu?
-4. AGENTS.md 150 satırın altında mı?
+4. AGENTS.md 150 satırın altında mı? `<!-- sistem:basla -->` ve
+   `<!-- sistem:bitir -->` işaretleri yerinde mi? Bu işaretleri silme ya da
+   arasına kişisel bilgi yazma: güncelleme o bölümü yeniden yazar.
 
 ## 6. Kapanış
 
@@ -185,7 +187,8 @@ Kullanıcıya sırayla şunları göster:
    > sayıyorsa kurulum çalışıyor demektir. Genel bir tavsiye listesi veriyorsa
    > bir yer eksik, `/kurulum guncelle` ile düzeltiriz.
 
-4. Bundan sonraki alışkanlık, üç satırla:
-   - Oturuma `/gunu-ac` ile başla.
-   - Oturumu `/gunu-kapat` ile bitir. Kapatılmayan oturumda konuşulan kaybolur.
-   - Haftada bir `/saglik-kontrolu` çalıştır.
+4. Bundan sonra nasıl kullanılır, üç satırla (komut ezberlemek gerekmez):
+   - Oturuma "nerede kalmıştık" ya da "bugün ne yapıyoruz" diye başla.
+   - Çalışırken kaydı ben tutarım: proje ilerleyince, karar alınınca o anda
+     dosyalara yazarım. İstersen sonunda "bugünlük bu kadar" de, kalanı toparlarım.
+   - Haftada bir "klasörü kontrol et" de.

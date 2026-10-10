@@ -37,13 +37,17 @@ runs/                    otomasyon kayıtları
 archives/                hiçbir şey silinmez, buraya taşınır
 ```
 
-## Her gün
+## Kullanırken
 
-| Ne zaman | Komut | Ne yapar |
-|---|---|---|
-| Oturum başı | `/gunu-ac` | Nerede kaldığını, yaklaşan tarihleri, sıradaki işi söyler |
-| Oturum sonu | `/gunu-kapat` | Konuşulanı dosyalara yazar, kararları kaydeder, Git kaydı alır |
-| Haftada bir | `/saglik-kontrolu` | Dağılan yerleri bulur, onay vermeden düzeltmez |
+Komut ezberlemen gerekmez, normal konuş:
+
+| Ne dersin | Ne olur |
+|---|---|
+| "Nerede kalmıştık?", "Bugün ne yapıyoruz?" | Yaklaşan tarihleri, projelerin sıradaki adımını ve tek bir "sıradaki iş" önerisini söyler |
+| Normal çalışırsın | Proje ilerleyince, karar alınınca Claude o anda ilgili dosyaya yazar. Kaydetmeyi hatırlaman gerekmez |
+| "Bugünlük bu kadar" | Kalan bir şey varsa toparlar, bu bilgisayarda bir geri dönüş noktası (Git kaydı) alır |
+| "Klasörü kontrol et" (haftada bir) | Dağılan yerleri bulur, onay vermeden düzeltmez |
+| "Sistemi güncelle" | Yeni sürümü çeker. Senin bilgilerine, projelerine, kararlarına dokunmaz |
 
 ## Bilgilerin değişince
 

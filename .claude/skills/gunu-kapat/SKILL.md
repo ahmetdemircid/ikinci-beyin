@@ -1,7 +1,6 @@
 ---
 name: gunu-kapat
-description: Çalışma oturumunu kapatır. Bu oturumda değişeni projelerin DEVAM.md dosyalarına yazar, alınan kararları onayla decisions/log.md'ye ekler, değişen öncelikleri günceller, tekrar eden işi ve tekrar eden düzeltmeyi yakalar, sonunda Git kaydı alır. Sadece kullanıcı "/gunu-kapat", "günü kapat", "oturumu kapat", "bugünlük bu kadar" dediğinde kullan.
-disable-model-invocation: true
+description: Çalışma oturumunu kapatır. Oturum içinde anında yazılmamış bir şey kaldıysa projelerin DEVAM.md dosyalarına yazar, kararları onayla decisions/log.md'ye ekler, değişen öncelikleri günceller, tekrar eden işi ve tekrar eden düzeltmeyi yakalar, sonunda Git kaydı alır. Kullanıcı "/gunu-kapat", "günü kapat", "oturumu kapat", "bugünlük bu kadar", "kapatıyorum", "yarın devam ederiz" dediğinde kullan.
 ---
 
 # Günü kapat
@@ -9,6 +8,11 @@ disable-model-invocation: true
 Amacın, yarın açılacak yeni oturumun bugün konuşulanı bilmeden kaldığı yerden
 devam edebilmesi. Yeni oturum bu konuşmayı göremez, sadece dosyaları görür.
 Dosyaya yazılmayan şey kaybolur.
+
+Kurallar gereği kayıt oturum boyunca anında tutulur, bu skill bir güvenlik
+ağıdır. Her adımda önce dosyaya bak: zaten yazılmış olanı tekrar yazma, sadece
+eksik kalanı tamamla. Her şey zaten yazılmışsa bunu söyle ve sadece Git
+kaydını al.
 
 ## Kesin kurallar
 
