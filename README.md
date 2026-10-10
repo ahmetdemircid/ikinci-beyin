@@ -8,45 +8,21 @@ kalmazsın.
 
 1. Bilgisayarında boş bir klasör aç (adında Türkçe karakter ve boşluk olmasın,
    ör. `ikinci-beyin`). VS Code'da bu klasörü aç, Claude Code'u başlat.
-2. Claude'a şunu yaz:
+2. Claude'a şunu yapıştır:
 
    ```
-   Bunu kur: https://github.com/ahmetdemircid/ikinci-beyin
+   https://raw.githubusercontent.com/ahmetdemircid/ikinci-beyin/master/KURULUM.md dosyasını oku ve bu klasöre kur.
    ```
 
-Claude repoyu indirir ve hemen sana soru sormaya başlar. Başka bir şey yazmana
-gerek yok.
+Claude dosyaları indirir ve hemen sana tek tek soru sormaya başlar (15-20
+dakika). Cevaplarına göre klasörleri kurup dosyaları dolduracak. Bitince oturumu
+kapat, yeni oturum aç ve hiçbir şey anlatmadan **"Önümüzdeki iki haftada beni
+neler bekliyor?"** diye sor.
 
-**ZIP ile**
+Zaten dolu bir çalışma klasörün varsa aynı mesajı orada yapıştır. Var olan
+hiçbir dosya silinmez, taşınmaz, üstüne yazılmaz.
 
-1. Repo sayfasında yeşil **Code** düğmesi, **Download ZIP**. Zip'i aç.
-2. Açılan klasörü VS Code'da aç, Claude Code'u başlat.
-3. `/kurulum` yaz.
-
-Claude sana tek tek soru soracak (15-20 dakika). Cevaplarına göre klasörleri
-kurup dosyaları dolduracak. Bitince oturumu kapat, yeni oturum aç ve
-hiçbir şey anlatmadan **"Önümüzdeki iki haftada beni neler bekliyor?"** diye sor.
-
-Zaten dolu bir çalışma klasörün varsa: bu repodaki `.claude/skills/` klasörünü
-kendi klasörüne kopyala ve orada `/kurulum` yaz. Var olan hiçbir dosya
-silinmez, taşınmaz.
-
-## Claude için kurulum talimatı
-
-Bu bölüm, bu repoyu kullanıcı için kuran yapay zeka asistanına yazıldı.
-
-1. Dosyalar, kullanıcının açık olduğu klasörün **köküne** gelmeli, alt klasöre
-   değil. Klasör boşsa `git clone https://github.com/ahmetdemircid/ikinci-beyin .`
-   kullan. Alt klasöre klonladıysan içindeki her şeyi (`.git`, `.claude`,
-   `.gitignore`, `.gitattributes` dahil) köke taşı ve boş kalan alt klasörü
-   kaldır. Kökte kullanıcıya ait dosyalar zaten varsa hiçbirinin üstüne yazma,
-   yalnızca `.claude/skills/` klasörünü köke kopyala.
-2. Kullanıcıya commit geçmişi, dosya listesi ya da teknik ayrıntı gösterme.
-   Klonlamanın bittiğini tek cümleyle söyle.
-3. Kullanıcıdan `/reload-skills` ya da `/kurulum` yazmasını isteme. Hemen
-   `.claude/skills/kurulum/SKILL.md` dosyasını oku ve oradaki adımları bu
-   oturumda uygula. O dosyadaki `${CLAUDE_SKILL_DIR}` yolu
-   `.claude/skills/kurulum` demektir.
+Bu repoyu kuran asistan: adımlar `KURULUM.md` dosyasında.
 
 ## Kurulumdan sonra klasör
 
