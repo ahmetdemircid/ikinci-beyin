@@ -10,8 +10,13 @@ kalmazsın.
 
 1. Bilgisayarında boş bir klasör aç (adında Türkçe karakter ve boşluk olmasın,
    ör. `ikinci-beyin`). VS Code'da bu klasörü aç, Claude Code'u başlat.
-2. Claude'a şunu yaz: `Bu repoyu bu klasörün içine klonla: https://github.com/ahmetdemircid/ikinci-beyin`
-3. Klonlama bitince **`/reload-skills`** yaz. Bu adımı atlama: Claude Code,
+2. Claude'a şunu yaz (olduğu gibi kopyala):
+
+   ```
+   https://github.com/ahmetdemircid/ikinci-beyin reposunu doğrudan bu klasörün köküne kur, ayrı bir alt klasör açma. Commit geçmişini ya da dosya listesini gösterme. Bitince bana sadece şunu yaz: "Hazır. Şimdi /reload-skills yaz, ardından /kurulum yaz."
+   ```
+
+3. Kurulum bitince **`/reload-skills`** yaz. Bu adımı atlama: Claude Code,
    oturum açıldıktan sonra gelen skill'leri kendiliğinden görmez. İstersen
    bunun yerine Claude Code'u kapatıp yeniden açabilirsin.
 4. `/kurulum` yaz.
