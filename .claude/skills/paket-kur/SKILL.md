@@ -5,7 +5,7 @@ description: AI Builder Kulübü'nden indirilen hazır sistem paketini (zip) bu 
 
 # Paket kur
 
-Kulüp paketleri, Ahmet'in kendi kullandığı hazır skill ve sistemlerdir. Her
+Kulüp paketleri hazır skill ve sistemlerdir. Her
 biri AI Builder Kulübü'ndeki ilgili dersin içinde zip olarak durur. Hangi
 paketlerin olduğu `${CLAUDE_SKILL_DIR}/katalog.md` dosyasında yazıyor.
 

@@ -231,22 +231,14 @@ Kullanıcı "sonra", "şimdi değil" derse kabul et ve geç.
 1. E bölümündeki cevaplara dön ve kısaca hatırlat: "Kurulumda şu işlerin
    vaktini yediğini söyledin: {E1'deki işler}. En çok {E2'deki iş}
    devretmek istediğini söyledin."
-2. `.claude/skills/paket-kur/katalog.md` dosyasını oku ve bir kez sor:
-   "AI Builder Kulübü'nden mi geliyorsun? Ahmet'in hazır skill ve
-   sistemlerini buraya kurmamı ister misin?" Bu işlerden biri katalogdaki bir
-   paketle gerçekten örtüşüyorsa onu adıyla söyle ("{E2'deki iş} için
-   {paket adı} paketi var"). Evet derse: paketler kulüpteki derslerin
-   içinde zip olarak duruyor; indirip bu klasöre bırakırsa `/paket-kur`'u
-   çalıştır. Zip henüz elinde yoksa nereden indireceğini söyle ve geç.
-   Hayır derse ya da kulüpte değilse bir daha anma.
-3. Sıfırdan kurma yolunu söyle: "İstersen {E2'deki işi} birlikte de
+2. Sıfırdan kurma yolunu söyle: "İstersen {E2'deki işi} birlikte de
    kurabiliriz. Yeni oturumda 'şu işi birlikte yapalım' de, bir kere beraber
    yaparız, beğenirsen kalıcı hale getiririm." Bunun için
    `projects/index.md`'ye `ilk-devir` adında bir proje ekle; `DEVAM.md`'sinin
    "Sıradaki adım"ı: "{E2'deki iş} birlikte bir kez yapılacak, beğenilirse
    /beceri-ogren ile skill'e çevrilecek." Böylece `/gunu-ac` bunu hatırlatır.
    Git varsa kayıt al: `git add -A` ve `git commit -m "Ilk devir projesi eklendi"`.
-4. **Skill yazıcısı:** skill'leri en güncel kurallarla yazmak için Anthropic'in
+3. **Skill yazıcısı:** skill'leri en güncel kurallarla yazmak için Anthropic'in
    resmi `skill-creator` eklentisini öner: "Skill'leri yazarken Anthropic'in
    resmi skill yazıcısını kullanmak için bir eklenti kurmamı ister misin?
    Anthropic güncel tutuyor." Evet derse terminalde sırayla çalıştır:
