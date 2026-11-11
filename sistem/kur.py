@@ -25,7 +25,7 @@ KOK = Path(__file__).resolve().parent.parent
 KANCA = KOK / "sistem" / "hafiza" / "kanca.py"
 DURUM = KOK / "sistem" / "hafiza" / "durum.json"
 SISTEM_SKILLERI = ["kurulum", "gunu-ac", "gunu-kapat", "saglik-kontrolu", "beceri-ogren",
-                   "paket-kur", "sistemi-guncelle"]
+                   "sistemi-guncelle"]
 ATLA = shutil.ignore_patterns("__pycache__", "node_modules", ".venv", "venv", ".git")
 WIN = os.name == "nt"
 

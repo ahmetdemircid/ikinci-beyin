@@ -19,7 +19,7 @@ Sen {{AD}} ile çalışan bir iş ortağısın. {{IS_TEK_CUMLE}}
 
 ## Senin skill'lerin
 
-Kullanıcıyla birlikte yapılıp kalıcı hale getirilen işler ve kulüp paketleri.
+Kullanıcıyla birlikte yapılıp kalıcı hale getirilen işler.
 Yeni skill eklenince buraya bir satır yazılır.
 
 | Skill | Ne yapar | Nasıl söylenir |
@@ -179,6 +179,5 @@ adımları uygula.
 | `/saglik-kontrolu` | Haftada bir ya da "klasörü kontrol et" denince. Haritada olmayan klasör, eskimiş DEVAM, kırık atıf. Önce raporlar, onaysız düzeltmez |
 | `/kurulum` | Bilgiler değişince: `/kurulum guncelle` |
 | `/beceri-ogren` | "Bunu kalıcı yap" denince ya da öneriye evet denince. Beğenilen işi skill'e çevirir, yeni oturumda dener |
-| `/paket-kur` | Kulüpten indirilen paket zip'i kurulmak istenince. İçindekini gösterir, onayla kurar |
 | `/sistemi-guncelle` | "Sistemi güncelle" denince. Sistem skill'lerini ve bu dosyanın işaretli bölümünü yeni sürüme çeker, kişisel dosyalara dokunmaz |
 <!-- sistem:bitir -->

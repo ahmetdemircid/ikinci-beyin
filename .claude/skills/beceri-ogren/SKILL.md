@@ -22,7 +22,7 @@ Bir dahakine sadece söylemen yeterli, aynı şekilde yaparım."
 - **Uydurma adım ekleme.** Skill'e sadece yapılan işte gerçekten olan adımları
   ve kullanıcının söylediği kuralları yaz.
 - **Sistem skill'lerinin adını kullanma:** `kurulum`, `gunu-ac`, `gunu-kapat`,
-  `saglik-kontrolu`, `sistemi-guncelle`, `beceri-ogren`, `paket-kur`.
+  `saglik-kontrolu`, `sistemi-guncelle`, `beceri-ogren`.
 - **Var olan skill'in üstüne yazma.** Aynı adda skill varsa önce
   `archives/{ad}-{YYYYAAGG}/` altına kopyala ve kullanıcıya söyle.
 - **Test geçmeden "hazır" deme.**

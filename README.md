@@ -61,7 +61,6 @@ Komut ezberlemen gerekmez, normal konuş:
 | "Not al: ..." | Gelen kutusuna düşer, sonra birlikte ilgili yere dağıtılır |
 | "Bugünlük bu kadar" | Projelerin durumunu günceller, bu bilgisayarda bir geri dönüş noktası (Git kaydı) alır |
 | "Klasörü kontrol et" (haftada bir) | Dağılan yerleri bulur, onay vermeden düzeltmez |
-| "Paketi kur" | AI Builder Kulübü'nden indirdiğin hazır sistem paketini kurar |
 | "Sistemi güncelle" | Yeni sürümü çeker. Senin bilgilerine, projelerine, kararlarına dokunmaz |
 
 ## Bilgilerin değişince

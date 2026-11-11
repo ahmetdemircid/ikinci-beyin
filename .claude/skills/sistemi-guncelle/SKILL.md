@@ -1,6 +1,6 @@
 ---
 name: sistemi-guncelle
-description: İkinci beyin sisteminin yeni sürümünü GitHub'dan çeker ya da son güncellemeyi geri alır. Sadece sistem skill'lerini (kurulum, gunu-ac, gunu-kapat, saglik-kontrolu, beceri-ogren, paket-kur, sistemi-guncelle) ve AGENTS.md'deki işaretli sistem bölümünü yeniler. Kişisel dosyalara (context/, projects/, decisions/, references/, kullanıcının kendi skill'leri ve kuralları) dokunmaz, eski hâli arşive kopyalar. Kullanıcı "/sistemi-guncelle", "sistemi güncelle", "yeni sürüm var mı", "ikinci beyni güncelle" dediğinde, ayrıca "güncellemeyi geri al" dediğinde kullan.
+description: İkinci beyin sisteminin yeni sürümünü GitHub'dan çeker ya da son güncellemeyi geri alır. Sadece sistem skill'lerini (kurulum, gunu-ac, gunu-kapat, saglik-kontrolu, beceri-ogren, sistemi-guncelle) ve AGENTS.md'deki işaretli sistem bölümünü yeniler. Kişisel dosyalara (context/, projects/, decisions/, references/, kullanıcının kendi skill'leri ve kuralları) dokunmaz, eski hâli arşive kopyalar. Kullanıcı "/sistemi-guncelle", "sistemi güncelle", "yeni sürüm var mı", "ikinci beyni güncelle" dediğinde, ayrıca "güncellemeyi geri al" dediğinde kullan.
 ---
 
 # Sistemi güncelle
@@ -10,7 +10,7 @@ Bu klasörde iki tür dosya var:
 - **Sistem dosyaları:** herkeste aynı, yeni sürümle değişebilir. Bunlar:
   `.claude/skills/kurulum/`, `.claude/skills/gunu-ac/`,
   `.claude/skills/gunu-kapat/`, `.claude/skills/saglik-kontrolu/`,
-  `.claude/skills/beceri-ogren/`, `.claude/skills/paket-kur/`,
+  `.claude/skills/beceri-ogren/`,
   `.claude/skills/sistemi-guncelle/`, `sistem/kur.py`, `sistem/skill_fark.py`,
   `sistem/hafiza/` altındaki `.py` ve `-istemi.md` dosyaları ve `AGENTS.md` içinde
   `<!-- sistem:basla -->` ile `<!-- sistem:bitir -->` arasındaki bölüm.
