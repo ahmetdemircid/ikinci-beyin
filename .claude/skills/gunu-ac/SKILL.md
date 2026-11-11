@@ -91,6 +91,8 @@ Raporun sonunda tek bir soru sor: "{Sıradaki iş} ile mi başlayalım?"
   (emoji, uzunluk vb.).
 - Bir dosya yoksa ya da beklenen bölüm boşsa uydurma. "Dikkat" altına "X
   dosyası yok" yaz ve geç.
+- `sistem/bekleyen-gecisler.txt`'de satır varsa "Dikkat" altında "{N} sistem
+  geçişi onay bekliyor, 'sistemi güncelle' dersen sorarım" yaz.
 - Gelen kutusunda 7 günden eski dağıtılmamış not varsa "Dikkat" altında
   "{N} not bekliyor, dağıtalım mı?" yaz.
 - Haftada bir kez sağlık kontrolü yapılmamışsa (`runs/` altında son 7 günde

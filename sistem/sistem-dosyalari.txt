@@ -1,0 +1,18 @@
+# Sistem dosyalari: guncellemede yeni surumdekiyle degisir, kalan her sey kisiseldir ve dokunulmaz.
+# Satir / ile bitiyorsa klasordur: eski klasor arsive alinir, yenisi tamamen yerine konur.
+# Guncellemede her zaman YENI surumdeki bu liste esas alinir.
+# AGENTS.md'deki <!-- sistem:basla --> ... <!-- sistem:bitir --> bolumu ayrica yenilenir (guncelle.py).
+.claude/skills/kurulum/
+.claude/skills/gunu-ac/
+.claude/skills/gunu-kapat/
+.claude/skills/saglik-kontrolu/
+.claude/skills/beceri-ogren/
+.claude/skills/sistemi-guncelle/
+sistem/sistem-dosyalari.txt
+sistem/kur.py
+sistem/guncelle.py
+sistem/skill_fark.py
+sistem/hafiza/kanca.py
+sistem/hafiza/ozetci.py
+sistem/hafiza/ozet-istemi.md
+sistem/hafiza/birlestirme-istemi.md

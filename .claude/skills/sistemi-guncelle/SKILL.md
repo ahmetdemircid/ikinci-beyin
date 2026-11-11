@@ -1,173 +1,140 @@
 ---
 name: sistemi-guncelle
-description: İkinci beyin sisteminin yeni sürümünü GitHub'dan çeker ya da son güncellemeyi geri alır. Sadece sistem skill'lerini (kurulum, gunu-ac, gunu-kapat, saglik-kontrolu, beceri-ogren, sistemi-guncelle) ve AGENTS.md'deki işaretli sistem bölümünü yeniler. Kişisel dosyalara (context/, projects/, decisions/, references/, kullanıcının kendi skill'leri ve kuralları) dokunmaz, eski hâli arşive kopyalar. Kullanıcı "/sistemi-guncelle", "sistemi güncelle", "yeni sürüm var mı", "ikinci beyni güncelle" dediğinde, ayrıca "güncellemeyi geri al" dediğinde kullan.
+description: İkinci beyin sisteminin yeni sürümünü GitHub'dan çeker ya da son güncellemeyi geri alır. Dosya işini sistem/guncelle.py betiği yapar; sadece sistem dosyalarını (sistem/sistem-dosyalari.txt listesi) ve AGENTS.md'deki işaretli sistem bölümünü yeniler. Kişisel dosyalara (context/, projects/, decisions/, references/, hafiza/, gunluk/, kullanıcının kendi skill'leri ve kuralları) dokunmaz, önce Git kaydı ve arşiv alır. Kullanıcı "/sistemi-guncelle", "sistemi güncelle", "yeni sürüm var mı", "ikinci beyni güncelle" dediğinde, ayrıca "güncellemeyi geri al" dediğinde kullan.
 ---
 
 # Sistemi güncelle
 
-Bu klasörde iki tür dosya var:
+Dosyaları sen değiştirmezsin, `sistem/guncelle.py` değiştirir. Senin işin:
+betiği çalıştırmak, çıktısını kullanıcıya sade dille anlatmak, onay almak ve
+kişisel dosyaya dokunan geçişleri tek tek sormak.
 
-- **Sistem dosyaları:** herkeste aynı, yeni sürümle değişebilir. Bunlar:
-  `.claude/skills/kurulum/`, `.claude/skills/gunu-ac/`,
-  `.claude/skills/gunu-kapat/`, `.claude/skills/saglik-kontrolu/`,
-  `.claude/skills/beceri-ogren/`,
-  `.claude/skills/sistemi-guncelle/`, `sistem/kur.py`, `sistem/skill_fark.py`,
-  `sistem/hafiza/` altındaki `.py` ve `-istemi.md` dosyaları ve `AGENTS.md` içinde
-  `<!-- sistem:basla -->` ile `<!-- sistem:bitir -->` arasındaki bölüm.
-- **Kişisel dosyalar:** geri kalan her şey. `context/`, `projects/`,
-  `decisions/`, `references/`, `runs/`, `archives/`, `.claude/rules/`,
-  `hafiza/`, `gunluk/`, `sistem/skill-istisna.txt`, `sistem/hafiza/`
-  altındaki çalışma dosyaları (`durum.json`, `kuyruk*.jsonl`, `kayit.log`,
-  `parca-ozetleri/`), ayar dosyaları (`.claude/settings*.json`,
-  `.codex/`, `.agents/hooks.json`), kullanıcının kendi skill'leri,
-  `AGENTS.md`'nin işaretler dışındaki kısmı.
+- **Sistem dosyaları:** yeni sürümün `sistem/sistem-dosyalari.txt` listesindekiler
+  (sistem skill'leri ve `sistem/` kodu) ve `AGENTS.md`'de `<!-- sistem:basla -->`
+  ile `<!-- sistem:bitir -->` arasındaki bölüm. Herkeste aynıdır.
+- **Kişisel dosyalar:** geri kalan her şey. Betik bunlara dokunmaz. Tek
+  istisna: `.gitignore`'a eksik satır ekler (silmez) ve iskelette olup
+  klasörde hiç olmayan boş dosyaları ekler.
 
-Sistem skill'lerinin listesi sürümle büyüyebilir. Güncel liste her zaman
-**yeni sürümdeki** bu dosyada yazandır; 3. adımdan itibaren onu esas al.
-
-**Kişisel dosyalara bu akışta dokunma.** Tek istisna aşağıdaki "Geçiş"
-adımıdır ve ayrı onay ister. Sistem dosyasının eski hâlini değiştirmeden önce
-arşive kopyala.
+**Kendi elinle sistem dosyasını değiştirme, kopyalama, silme.** Betik
+çalışmıyorsa dur ve kullanıcıya söyle; işi elle yapmaya kalkma.
 
 Kullanıcı "güncellemeyi geri al" derse en alttaki "Geri alma" bölümüne git.
 
-## 1. Yeni sürümü geçici alana indir
+## 1. Python
 
-Bu klasörün DIŞINDA, işletim sisteminin geçici klasöründe boş bir klasör aç.
-Şu dosyayı oraya indir ve aç:
+Sırayla `python --version`, `py --version`, `python3 --version` dene; Python 3
+veren adı aşağıda `{py}` diye kullan. Hiçbiri yoksa dur: "Güncelleme için
+Python gerekiyor. python.org'dan kur, kurarken 'Add python.exe to PATH'
+kutusunu işaretle, sonra tekrar 'sistemi güncelle' de." Hiçbir dosyayı değiştirme.
 
-`https://github.com/ahmetdemircid/ikinci-beyin/archive/refs/heads/master.zip`
+## 2. Kontrol (hiçbir şey değişmez)
 
-İçinden `ikinci-beyin-master/` klasörü çıkar. Bundan sonra "yeni sürüm" bu
-klasör demek. Git gerekmez. İndirme başarısız olursa dur, nedenini tek
-cümleyle söyle, hiçbir dosyayı değiştirme.
+`{py} sistem/guncelle.py --kontrol`
 
-## 2. Sürümleri karşılaştır
+Betik yeni sürümü GitHub'dan geçici bir klasöre indirir, karşılaştırır, neyin
+değişeceğini yazar. Hiçbir dosyaya dokunmaz.
 
-`.claude/skills/sistemi-guncelle/surum.txt` dosyasının ilk satırı sürümdür.
-Bu klasördeki ile yeni sürümdekini karşılaştır.
-
-- **Aynıysa:** "Sistem zaten güncel ({sürüm})" de, geçici klasörü kaldır, dur.
-- **Bu klasörde `surum.txt` yoksa:** sistem, sürüm takibi eklenmeden önce
-  kurulmuş. Güncellemeye devam et.
+- "Sistem zaten güncel" yazarsa bunu söyle. `sistem/bekleyen-gecisler.txt`
+  varsa 5. adıma geç, yoksa dur.
+- "HATA" yazarsa hatayı tek cümleyle söyle ve dur.
 
 ## 3. Ne değişecek, kullanıcıya göster ve onay al
 
-Sistem dosyalarının her birini yeni sürümdekiyle karşılaştır. Kullanıcıya
-kısa bir liste göster, teknik ayrıntı (diff) dökme:
+**Eski bir sürümün skill'inden buraya geldiysen** (yeni sürüm zaten geçici bir
+klasöre indirildi ve bu klasörde `sistem/guncelle.py` yok), kontrolü yeni
+sürümdeki betikle yap:
+`{py} "{geçici klasör}/sistem/guncelle.py" --kontrol --kaynak "{geçici klasör}" --hedef "{bu klasör}"`.
+Sonraki adımlarda da aynı `--kaynak` ve `--hedef` ile çalıştır.
+
+Kontrol çıktısını kısa bir listeye çevir, teknik ayrıntı dökme:
 
 ```
 Sürüm: {eski} -> {yeni}
-Değişecek:
-- gunu-kapat: {bir cümleyle ne değişti}
-- AGENTS.md sistem bölümü: {bir cümleyle ne değişti}
-Yeni eklenen: {varsa skill adı ve ne işe yaradığı}
-Dokunulmayacak: senin bilgilerin, projelerin, kararların, kendi kuralların ve skill'lerin.
+Değişecek: {her biri için bir cümle: ne işe yarıyor, ne değişti}
+Yeni eklenecek: {varsa}
+Senin dosyana dokunacak geçiş: {varsa başlığı; ayrıca sorulacak}
+Dokunulmayacak: bilgilerin, projelerin, kararların, hafızan, günlüğün, kendi skill'lerin.
 ```
 
-Sonra sor: "Güncelleyeyim mi?" Onay gelmeden hiçbir dosyayı değiştirme.
+Bir sistem skill'inin içine kullanıcı kendi dosyasını ya da satırını eklediyse
+güncelleme o skill'in klasörünü yeni sürümle değiştirir; eski hâli arşivde
+kalır. Kişisel bir değişikliğin kalıcı yeri `hafiza/otomatik/` ya da
+kullanıcının kendi adını verdiği ayrı bir skill'dir.
 
-Kullanıcı bir sistem skill'ini kendisi değiştirmişse (yeni sürümde de eski
-sürümde de olmayan satırlar varsa) bunu ayrıca söyle: "Bu dosyada senin
-eklediğin satırlar var, güncelleme bunları değiştirecek; eski hâli arşivde
-kalacak." Kişisel bir değişikliği kalıcı tutmak istiyorsa yeri
-`.claude/rules/` ya da kendi adını verdiği ayrı bir skill'dir.
+Sonra sor: "Güncelleyeyim mi?" Onay gelmeden 4. adıma geçme.
 
-## 4. Geri dönüş noktası ve arşiv
+## 4. Uygula
 
-1. **Git varsa önce kayıt al.** Kaydedilmemiş değişiklik varsa:
-   `git add -A` ve `git commit -m "Guncelleme oncesi"`. Sonra o anki kaydın
-   kısa kimliğini not et (`git rev-parse --short HEAD`); geri alma bu
-   kayda döner. Kullanıcıya söyle: "Güncellemeden önce geri dönüş noktası
-   aldım ({kimlik})."
-2. `archives/sistem-{YYYYAAGG-SSDD}/` klasörü aç. Değişecek her sistem
-   skill'inin klasörünü, değişecek `sistem/` dosyalarını ve `AGENTS.md`'nin
-   tamamını oraya kopyala. Git yoksa
-   tek geri dönüş yolu bu arşivdir.
+`{py} sistem/guncelle.py --uygula` (eski sürümden geldiysen 3. adımdaki
+`--kaynak` ve `--hedef` ile)
 
-## 5. Uygula
+Betik sırayla: eksik `.gitignore` satırlarını ekler, Git varsa geri dönüş
+kaydı alır, değişecek dosyaları `archives/sistem-{tarih}/onceki/` altına
+kopyalar, sistem dosyalarını yeni sürümle değiştirir, `AGENTS.md`'nin sadece
+işaretli bölümünü yeniler, `sistem/kur.py` ile kancaları ve skill kopyalarını
+tamamlar.
 
-- **Skill'ler:** değişen her sistem skill'inin klasörünü yeni sürümdekiyle
-  değiştir. Yeni sürümde yeni bir sistem skill'i varsa ekle. Listede olmayan
-  skill'lere (kullanıcının kendi skill'leri) dokunma.
-- **Sistem kodu:** yukarıda sayılan `sistem/` dosyalarını yeni sürümdekiyle
-  değiştir; bu klasörde yoksa ekle. `sistem/hafiza/` altındaki çalışma
-  dosyalarına ve `sistem/skill-istisna.txt`'ye dokunma.
-- **AGENTS.md, işaretler varsa:** sadece `<!-- sistem:basla -->` ile
-  `<!-- sistem:bitir -->` arasını (işaretler dahil), yeni sürümdeki
-  `.claude/skills/kurulum/iskelet/AGENTS.md` dosyasının aynı bölümüyle değiştir.
-  İşaretlerin dışındaki tek bir karaktere dokunma.
-- **AGENTS.md, işaretler yoksa** (eski kurulum): kişisel kısımları ayır. Bunlar
-  başlık, "Sen ... iş ortağısın" cümlesi, en üstteki hedef, kullanıcının
-  itiraz ve iletişim tercihleri ve "Kullanıcının eklediği kurallar" bölümü.
-  Yeni dosyayı şöyle kur: yeni şablonun işaretlerden önceki kısmını bu
-  kişisel bilgilerle doldur, ardından yeni sistem bölümünü işaretleriyle
-  ekle. Eski dosyadaki bir kural iki tarafa da uymuyorsa silme, "Kullanıcının
-  eklediği kurallar" bölümüne olduğu gibi taşı. Sonuçta neyi nereye
-  koyduğunu kullanıcıya göster.
-- **Yeni sürümle gelen boş dosyalar:** yeni sürümün
-  `.claude/skills/kurulum/iskelet/` klasöründe olup bu klasörde hiç olmayan
-  dosyaları (ör. `references/is-gunlugu.md`) aynı yola kopyala. Var olan
-  dosyaya dokunma. `AGENTS.md`'de işaretlerin üstünde "Senin skill'lerin"
-  bölümü yoksa işaretin hemen üstüne şablondaki gibi ekle; bu, işaret
-  dışına yapılan tek ekleme.
-- **CLAUDE.md:** yeni sürümün `iskelet/CLAUDE.md`'si bu klasördekinden farklıysa
-  değiştirme. Farkı göster ve sor.
-- **Kanca ve skill kopyası:** sistem dosyaları yerine konduktan sonra
-  `python sistem/kur.py --sistem-skilleri` çalıştır (Python adı `py` ya da
-  `python3` olabilir). Eksik kancaları ekler, sistem skill'lerinin
-  `.agents/skills/` kopyasını yeniler, kullanıcının ayarlarına dokunmaz.
-  Çıktıdaki `[UYARI]` satırlarını kullanıcıya söyle. Python yoksa bu adımı
-  atla ve söyle.
+Çıktıyı oku:
+- "Güncellendi" satırı yoksa ya da "HATA" varsa: hatayı söyle, "yarıda
+  kaldı" yazıyorsa geri almayı öner (aşağıda). Kendin onarmaya kalkma.
+- "AGENTS.md'de sistem işaretleri yok" yazarsa: aşağıdaki "İşaretsiz AGENTS.md"
+  bölümünü uygula.
+- `kur.py` çıktısındaki `[UYARI]` satırlarını kullanıcıya söyle.
 
-## 5b. Geçiş (sadece yeni sürüm isterse)
+## 5. Geçişler (kişisel dosyaya dokunur, ayrı onay)
 
-Sistemin kuralı dosya düzenini sabit tutmaktır; neredeyse her güncelleme
-kişisel dosyalara dokunmadan biter. Yeni sürümde
-`.claude/skills/sistemi-guncelle/gecisler/` altında, bu klasördeki sürümden
-yeni ve `{sürüm}.md` adlı bir dosya varsa o sürüm kişisel bir dosyada
-değişiklik gerektiriyor demektir (ör. proje haritasına yeni sütun). O
-dosyada neyin neden değiştiği yazar. Bu durumda:
+`sistem/bekleyen-gecisler.txt` dosyasındaki her satır bir geçiştir. Her biri
+için `.claude/skills/sistemi-guncelle/gecisler/{sürüm}.md` dosyasını oku ve:
 
 1. Hangi kişisel dosyada neyin değişeceğini kullanıcıya önce/sonra örneğiyle
-   göster. Teknik ayrıntı dökme, bir iki satırlık örnek yeter.
+   göster. Bir iki satırlık örnek yeter.
 2. Ayrı onay iste: "Bu değişiklik senin dosyana dokunuyor. Yapayım mı?
    Hayır dersen sistem eski düzenle çalışmaya devam eder."
-3. Onay gelirse önce dosyanın kopyasını `archives/sistem-{...}/kisisel/`
-   altına al, sonra sadece tarif edilen değişikliği yap. İçerikteki hiçbir
-   satırı silme, yeniden yazma ya da özetleme.
-4. Hayır derse dokunma ve bunu `surum.txt`'nin ikinci satırına yaz:
-   `atlanan-gecis: {sürüm}`. Sonraki güncellemede tekrar sorulur.
+3. Onay gelirse önce dosyanın kopyasını son `archives/sistem-{...}/` altında
+   `kisisel/` klasörüne al, sonra sadece tarif edilen değişikliği yap.
+   İçerikteki hiçbir satırı silme, yeniden yazma ya da özetleme. Bitince o
+   satırı `sistem/bekleyen-gecisler.txt`'den sil.
+4. Hayır derse dokunma, satır dosyada kalır; sonraki güncellemede yeniden
+   sorulur.
 
-## 6. Kontrol et ve kaydet
+## 6. Kaydet
 
-1. `AGENTS.md`'de işaretler birer kez ve sırayla var mı, `{{` kalmış mı?
-2. Sistem skill'lerinin her birinde `SKILL.md` var mı?
-3. Geçici klasörü kaldır (sadece 1. adımda açtığın klasörü).
-4. Git varsa: `git add -A` ve
-   `git commit -m "Sistem guncellendi: {eski} -> {yeni}"`. Git'te ad ve e-posta
-   yoksa sadece bu klasör için tanımla (`--global` kullanma). `git push` yapma.
+Git varsa: `git add -A` ve
+`git commit -m "Sistem guncellendi: {eski} -> {yeni}"`. Git'te ad ve e-posta
+yoksa sadece bu klasör için tanımla (`--global` kullanma). `git push` yapma.
 
 ## 7. Rapor
 
-İki üç cümle yeter: hangi sürüme geçildi, ne değişti, eski hâl nerede
-(`archives/sistem-.../`). Yeni bir sistem skill'i eklendiyse: "Yeni skill'in
-görünmesi için yeni bir oturum aç."
+İki üç cümle: hangi sürüme geçildi, ne değişti, eski hâl nerede
+(`archives/sistem-.../`), geçişlerden hangisi yapıldı hangisi bekliyor. Son
+cümle: "Yeni hâlin devreye girmesi için bu oturumu kapatıp yenisini aç."
+
+## İşaretsiz AGENTS.md (çok eski kurulum)
+
+Betik işaretsiz `AGENTS.md`'ye dokunmaz. Elle yap: önce dosyayı son
+`archives/sistem-{...}/onceki/` altına kopyala (betik zaten kopyaladıysa
+geç). Kişisel kısımları ayır: başlık, "Sen ... iş ortağısın" cümlesi, en
+üstteki hedef, iletişim ve itiraz tercihleri, "Kullanıcının eklediği kurallar"
+bölümü. Yeni dosyayı şöyle kur: `.claude/skills/kurulum/iskelet/AGENTS.md`
+şablonunun işaretlerden önceki kısmını bu kişisel bilgilerle doldur, ardından
+şablonun sistem bölümünü işaretleriyle ekle. İki tarafa da uymayan kuralı
+silme, "Kullanıcının eklediği kurallar"a olduğu gibi taşı. Neyi nereye
+koyduğunu kullanıcıya göster.
 
 ## Geri alma
 
 Kullanıcı "güncellemeyi geri al" derse:
 
-1. `git log --oneline` içinde en son "Guncelleme oncesi" ya da ondan hemen
-   önceki kaydı bul. Hangi kayda döneceğini ve o günden bu yana yapılan
-   diğer kayıtları kullanıcıya göster.
-2. Güncellemeden sonra kullanıcı başka iş de yaptıysa tüm klasörü geri
-   sarma; o işler kaybolur. Bunun yerine sadece sistem dosyalarını (sistem
-   skill'leri ve `AGENTS.md`'nin işaretli bölümü) ve geçiş adımında
-   değişen kişisel dosyaları o kayıttaki hâline getir:
-   `git checkout {kimlik} -- {dosya yolları}`. Sonra
-   `git commit -m "Guncelleme geri alindi"`.
-3. Git yoksa aynı dosyaları `archives/sistem-{...}/` altındaki kopyalardan
+1. `{py} sistem/guncelle.py --geri-al`
+2. Betik son güncellemede değişen sistem dosyalarını ve `AGENTS.md`'nin
+   işaretli bölümünü arşivdeki eski hâline döndürür, yeni sürümün dosyalarını
+   arşivin içine kenara alır. Kişisel dosyalara ve güncellemeden sonra
+   yapılan işlere dokunmaz. `sistem/` altına yeni eklenen kodu yerinde
+   bırakır, çünkü günlük kancaları ona bağlı.
+3. Geçiş adımında değişmiş kişisel dosya varsa betik onları geri almaz.
+   Kullanıcı isterse `archives/sistem-{...}/kisisel/` altındaki kopyaları
    geri koy.
-4. "Eski sürüme döndüm. Yeni sürümdeki sorun düzelince tekrar güncelleyebilirsin."
-   de. Yeni oturum açmasını söyle.
+4. Git varsa: `git add -A` ve `git commit -m "Guncelleme geri alindi"`.
+5. "Eski sürüme döndüm. Yeni sürümdeki sorun düzelince tekrar
+   güncelleyebilirsin. Yeni oturum aç." de.

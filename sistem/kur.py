@@ -24,8 +24,16 @@ from pathlib import Path
 KOK = Path(__file__).resolve().parent.parent
 KANCA = KOK / "sistem" / "hafiza" / "kanca.py"
 DURUM = KOK / "sistem" / "hafiza" / "durum.json"
-SISTEM_SKILLERI = ["kurulum", "gunu-ac", "gunu-kapat", "saglik-kontrolu", "beceri-ogren",
-                   "sistemi-guncelle"]
+def _sistem_skilleri():
+    """Sistem skill'leri tek yerden: sistem/sistem-dosyalari.txt (guncelle.py ile ayni liste)."""
+    try:
+        satirlar = (KOK / "sistem" / "sistem-dosyalari.txt").read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return []
+    return [s.strip().rstrip("/").split("/")[-1] for s in satirlar if s.strip().startswith(".claude/skills/")]
+
+
+SISTEM_SKILLERI = _sistem_skilleri()
 ATLA = shutil.ignore_patterns("__pycache__", "node_modules", ".venv", "venv", ".git")
 WIN = os.name == "nt"
 
