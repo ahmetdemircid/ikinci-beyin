@@ -1,0 +1,2 @@
+# Bilerek sadece bir aracin klasorunde duran skill'ler (.claude/skills ya da .agents/skills).
+# Satir basina bir skill adi. Buradakiler "sadece .claude'da / sadece .agents'ta" uyarisina girmez.

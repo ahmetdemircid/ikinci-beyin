@@ -57,6 +57,12 @@ hangi başlık altında olduğunu yaz.
 
 ### K9. Boyut
 - `AGENTS.md` 200 satırı geçiyor mu?
+- `hafiza/otomatik/MEMORY.md` 200 satırı geçiyor mu? Claude Code sadece ilk
+  200 satırını yükler, fazlası kaybolur. Aynı konudaki hafıza dosyaları var mı?
+- `references/kural-adaylari.md`'de 14 günden eski `(durum: bekliyor)` aday var mı?
+- Hafıza kurulumu yerinde mi: `python sistem/kur.py --kontrol` çalıştır,
+  `[UYARI]` satırlarını rapora ekle. `gunluk/` en yeni tarihli dosyası 7 günden
+  eskiyse ve bu arada oturum açıldıysa günlük yazılmıyor olabilir, söyle.
 - `context/` altındaki her dosya 60 satırı geçiyor mu? Bu dosyalar her
   oturumda yükleniyor, büyüdükçe her mesaj daha çok token harcar.
 - `context/` dosyalarında geçmiş birikmiş mi? ("Önceki liste", biten çeyrek,

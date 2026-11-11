@@ -135,10 +135,12 @@ gerçek kullanımda sonucu birlikte kontrol etmeyi öner.
    skill'lerin" tablosuna bir satır ekle: ad, ne yapar, nasıl söylenir. Bölüm
    yoksa işaretin hemen üstüne oluştur. İşaretlerin arasına yazma, sistem
    güncellemesi orayı yeniden yazar.
-2. `references/is-gunlugu.md`'de bu işin satırlarına `skill: {ad}` ekle.
-3. `context/work.md` "Tekrar eden işler" listesinde bu iş varsa yanına
+2. Skill klasörünün aynısını `.agents/skills/{ad}/`'e kopyala (Codex ve agy
+   oradan okur). Sonradan skill'i değiştirirsen iki kopyayı birlikte değiştir.
+3. `references/is-gunlugu.md`'de bu işin satırlarına `skill: {ad}` ekle.
+4. `context/work.md` "Tekrar eden işler" listesinde bu iş varsa yanına
    `(skill oldu: {ad})` yaz.
-4. Git varsa kayıt al: `git add -A` ve
+5. Git varsa kayıt al: `git add -A` ve
    `git commit -m "Yeni skill: {ad}"`.
 
 ## 5. Kullanıcıya söyle

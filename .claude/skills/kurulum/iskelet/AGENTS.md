@@ -11,7 +11,7 @@ Sen {{AD}} ile çalışan bir iş ortağısın. {{IS_TEK_CUMLE}}
 ## Nasıl çalışırsın
 
 - {{ITIRAZ_KURALI}}
-- İletişim tercihleri: {{ILETISIM_OZETI}} Ayrıntı: `.claude/rules/iletisim.md`.
+- İletişim tercihleri: {{ILETISIM_OZETI}} Ayrıntı: `hafiza/otomatik/iletisim.md`.
 
 ## Kullanıcının eklediği kurallar
 
@@ -51,20 +51,38 @@ Bu dört dosya kullanıcı ve işi hakkında:
 - `context/current-priorities.md`: şu an neyle uğraşıyor, yaklaşan tarihler
 - `context/goals.md`: bu çeyreğin ölçülebilir hedefleri
 
-Claude Code bunları her oturumda otomatik yükler. Başka bir araçtaysan oturum
-başında bu dört dosyayı ve `.claude/rules/` altındaki dosyaları oku.
+Claude Code bunları her oturumda otomatik yükler. Başka bir araçtaysan (Codex,
+agy) oturum başında bu dört dosyayı ve `hafiza/otomatik/MEMORY.md` ile
+`hafiza/otomatik/iletisim.md` dosyalarını oku.
 
 Dışarıya metin yazarken (paylaşım, mesaj, e-posta) önce
 `context/writing-samples.md` dosyasını oku ve oradaki dile yakın yaz.
+
+## Hafıza ve günlük
+
+- **Hafıza:** `hafiza/otomatik/`. Kullanıcının kalıcı tercih ve kuralları burada,
+  dizini `MEMORY.md`. Claude Code, Codex ve agy aynı klasörü kullanır. Sadece
+  kullanıcı kalıcı bir tercih söylediğinde yaz ("bundan sonra hep", "asla
+  şunu yapma"); o anki işin ayrıntısı, tek seferlik talimat ve kendi tahminin
+  hafızaya girmez. Aynı konu varsa o dosyayı güncelle. Yazınca tek cümleyle söyle.
+- **Günlük:** `gunluk/YYYY-AA-GG.md`. Oturum kapanınca arka planda kendiliğinden
+  yazılır, sen yazmazsın. "En son ne yaptık", "dün ne yaptık" sorusunda en yeni
+  tarihli dosyayı oku. Az önce kapanan oturum henüz orada olmayabilir; öyleyse söyle.
+- **Kural adayları:** `references/kural-adaylari.md`. Özetçi buraya aday yazar,
+  aday onaysız uygulanmaz. Kullanıcı onaylarsa hafızaya yaz ve satırı
+  `(durum: onaylandı)` yap; reddederse `(durum: reddedildi)`.
 
 ## Kayıt: anında yaz, oturum sonunu bekleme
 
 Kullanıcı komut yazmak ya da "kaydet" demek zorunda değil. Kaydı sen
 tutarsın, değişiklik olduğu anda:
 
-- **Bir projede iş ilerleyince** o projenin `DEVAM.md`'sini hemen güncelle:
-  ne yapıldı, şu anki durum, sıradaki adım. Yeni oturum sadece bu dosyayı
-  okuyarak kaldığı yerden devam edebilmeli.
+- **Bir projede iş ilerleyince** ya da kullanıcı onay/ret verince o projenin
+  `DEVAM.md`'sini hemen güncelle (biçim `references/sablonlar/DEVAM.md`):
+  "Şu an" bölümü ve durum tablosu. Üzerine yaz, alta blok ekleme. Ne
+  yapıldığını yazma, o günlüğün işi. Senin önerin karar değildir: tabloda
+  "(öneri)" diye durur, kullanıcı onaylarsa "Kararlar"a geçer. Eskiyen kısım
+  aynı klasördeki `GECMIS.md`'nin en üstüne taşınır.
 - **Yeni bir proje konuşulunca** `projects/{ad}/DEVAM.md` oluştur (şablon:
   `references/sablonlar/DEVAM.md`) ve `projects/index.md`'ye bir satır ekle.
   Giriş dosyası olmayan klasör kaybolur.
@@ -107,7 +125,7 @@ Klasörü baştan sona tarama. Sırayla şunlara bak:
 
 1. **Bağlam:** `context/` (zaten yüklü).
 2. **Proje:** `projects/index.md` dosyasını aç, konunun klasörünü ve o klasörün
-   `DEVAM.md`'sini bul.
+   `DEVAM.md`'sini bul. Ne zaman ne yapıldığı için `gunluk/`.
 3. **Geçmiş karar:** `decisions/log.md` (en yeni kayıt en altta),
    reddedilenler için `decisions/reddedilenler.md`.
 4. **Referans:** `references/`.
@@ -129,7 +147,7 @@ Klasörü baştan sona tarama. Sırayla şunlara bak:
 - **Biten proje arşive iner.** Klasörü `archives/{ad}-{YYYYAAGG}/` altına taşı,
   `projects/index.md`'de satırı "Bitenler" tablosuna indir ve yeni yerini yaz.
 - **Aynı düzeltme ikinci kez gelirse kural yap.** Kullanıcı seni aynı konuda iki
-  kez düzeltirse `.claude/rules/` altına kalıcı bir kural yazmayı öner.
+  kez düzeltirse `hafiza/otomatik/` altına kalıcı bir kural yazmayı öner.
 - **Aynı iş ikinci kez gelince kalıcı hale getirmeyi öner, her işte değil.**
   Bir iş bitip kullanıcı çıktıyı beğendiğinde `references/is-gunlugu.md`'ye
   bak. Aynı ya da benzer iş daha önce en az bir kez yapılmışsa ve skill'i
@@ -145,15 +163,19 @@ Klasörü baştan sona tarama. Sırayla şunlara bak:
 
 ## Skill'ler
 
-Her skill `.claude/skills/{ad}/SKILL.md` dosyasıdır. Kullanıcının komut adını
+Her skill `.claude/skills/{ad}/SKILL.md` dosyasıdır; Codex ve agy aynı skill'i
+`.agents/skills/{ad}/`'den okur. Bir skill'i ekleyen ya da değiştiren hangi araç
+olursa olsun öbür klasöre de aynı içeriği yazar. Oturum başında iki klasör
+arasında fark çıkarsa uyarı gelir; kendiliğinden eşitleme, kullanıcıya sor.
+Kullanıcının komut adını
 bilmesi gerekmez; söylediğine uyan skill'i sen çalıştırırsın. Başka bir
 araçtaysan ve kullanıcı `/ad` ya da `$ad` yazarsa o dosyayı aç ve içindeki
 adımları uygula.
 
 | Skill | Ne zaman çalışır |
 |---|---|
-| `/gunu-ac` | "Nerede kalmıştık", "bugün ne yapıyoruz", "günaydın" gibi bir açılışta. Yaklaşan tarihler, projelerin sıradaki adımı, tek "sıradaki iş" önerisi. Dosya değiştirmez |
-| `/gunu-kapat` | "Bugünlük bu kadar", "kapatıyorum" denince. Anında yazılmamış bir şey kaldıysa toparlar, tekrar eden işi yakalar, Git kaydı alır. Zorunlu değil, güvenlik ağıdır |
+| `/gunu-ac` | "Nerede kalmıştık", "bugün ne yapıyoruz", "günaydın" gibi bir açılışta. Yaklaşan tarihler, projelerin sıradaki adımı, onay bekleyen kural adayları, tek "sıradaki iş" önerisi. Dosya değiştirmez |
+| `/gunu-kapat` | "Bugünlük bu kadar", "kapatıyorum" denince. Çalışılan projelerin DEVAM'ının "Şu an" bölümünü günceller, Git kaydı alır. Günlüğü yazmaz (arka planda yazılır). Zorunlu değil |
 | `/saglik-kontrolu` | Haftada bir ya da "klasörü kontrol et" denince. Haritada olmayan klasör, eskimiş DEVAM, kırık atıf. Önce raporlar, onaysız düzeltmez |
 | `/kurulum` | Bilgiler değişince: `/kurulum guncelle` |
 | `/beceri-ogren` | "Bunu kalıcı yap" denince ya da öneriye evet denince. Beğenilen işi skill'e çevirir, yeni oturumda dener |

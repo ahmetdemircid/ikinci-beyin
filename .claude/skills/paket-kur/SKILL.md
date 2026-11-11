@@ -21,7 +21,7 @@ paketlerin olduğu `${CLAUDE_SKILL_DIR}/katalog.md` dosyasında yazıyor.
   sorguları) kullanıcının onayıyla çalıştırabilirsin.
 - **Kişisel dosyalara dokunma:** `context/`, `projects/`, `decisions/`,
   `references/` (sadece `references/paketler.md`'ye satır eklenir),
-  `.claude/rules/`.
+  `.claude/rules/`, `hafiza/`, `gunluk/`.
 - **Hiçbir şeyi silme.** Eski sürümün üstüne yazmadan önce arşive kopyala.
 
 ## 1. Zip'i bul
@@ -59,6 +59,8 @@ Sonra sor: "Kurayım mı?" Onay gelmeden hiçbir dosyayı değiştirme.
    `archives/paket-{ad}-{YYYYAAGG}/` altına kopyala.
 2. Paketteki `skills/` altındaki her klasörü `.claude/skills/` altına kopyala.
    Claude Code `.claude/` klasörüne yazarken izin sorabilir; önceden söyle.
+   Aynı klasörleri `.agents/skills/` altına da kopyala (Codex ve agy oradan
+   okur); orada aynı adda skill varsa onu da 1. adımdaki arşive al.
 3. `references/paketler.md` dosyasına bir satır ekle (dosya yoksa başlığıyla
    oluştur): `| {ad} | {sürüm} | {bugünün tarihi} | {skill adları} |`
 4. `AGENTS.md`'de `<!-- sistem:basla -->` işaretinin üstündeki "Senin

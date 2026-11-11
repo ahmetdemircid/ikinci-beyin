@@ -11,11 +11,16 @@ Bu klasörde iki tür dosya var:
   `.claude/skills/kurulum/`, `.claude/skills/gunu-ac/`,
   `.claude/skills/gunu-kapat/`, `.claude/skills/saglik-kontrolu/`,
   `.claude/skills/beceri-ogren/`, `.claude/skills/paket-kur/`,
-  `.claude/skills/sistemi-guncelle/` ve `AGENTS.md` içinde
+  `.claude/skills/sistemi-guncelle/`, `sistem/kur.py`, `sistem/skill_fark.py`,
+  `sistem/hafiza/` altındaki `.py` ve `-istemi.md` dosyaları ve `AGENTS.md` içinde
   `<!-- sistem:basla -->` ile `<!-- sistem:bitir -->` arasındaki bölüm.
 - **Kişisel dosyalar:** geri kalan her şey. `context/`, `projects/`,
   `decisions/`, `references/`, `runs/`, `archives/`, `.claude/rules/`,
-  kullanıcının kendi skill'leri, `AGENTS.md`'nin işaretler dışındaki kısmı.
+  `hafiza/`, `gunluk/`, `sistem/skill-istisna.txt`, `sistem/hafiza/`
+  altındaki çalışma dosyaları (`durum.json`, `kuyruk*.jsonl`, `kayit.log`,
+  `parca-ozetleri/`), ayar dosyaları (`.claude/settings*.json`,
+  `.codex/`, `.agents/hooks.json`), kullanıcının kendi skill'leri,
+  `AGENTS.md`'nin işaretler dışındaki kısmı.
 
 Sistem skill'lerinin listesi sürümle büyüyebilir. Güncel liste her zaman
 **yeni sürümdeki** bu dosyada yazandır; 3. adımdan itibaren onu esas al.
@@ -76,7 +81,8 @@ kalacak." Kişisel bir değişikliği kalıcı tutmak istiyorsa yeri
    kayda döner. Kullanıcıya söyle: "Güncellemeden önce geri dönüş noktası
    aldım ({kimlik})."
 2. `archives/sistem-{YYYYAAGG-SSDD}/` klasörü aç. Değişecek her sistem
-   skill'inin klasörünü ve `AGENTS.md`'nin tamamını oraya kopyala. Git yoksa
+   skill'inin klasörünü, değişecek `sistem/` dosyalarını ve `AGENTS.md`'nin
+   tamamını oraya kopyala. Git yoksa
    tek geri dönüş yolu bu arşivdir.
 
 ## 5. Uygula
@@ -84,6 +90,9 @@ kalacak." Kişisel bir değişikliği kalıcı tutmak istiyorsa yeri
 - **Skill'ler:** değişen her sistem skill'inin klasörünü yeni sürümdekiyle
   değiştir. Yeni sürümde yeni bir sistem skill'i varsa ekle. Listede olmayan
   skill'lere (kullanıcının kendi skill'leri) dokunma.
+- **Sistem kodu:** yukarıda sayılan `sistem/` dosyalarını yeni sürümdekiyle
+  değiştir; bu klasörde yoksa ekle. `sistem/hafiza/` altındaki çalışma
+  dosyalarına ve `sistem/skill-istisna.txt`'ye dokunma.
 - **AGENTS.md, işaretler varsa:** sadece `<!-- sistem:basla -->` ile
   `<!-- sistem:bitir -->` arasını (işaretler dahil), yeni sürümdeki
   `.claude/skills/kurulum/iskelet/AGENTS.md` dosyasının aynı bölümüyle değiştir.
@@ -104,6 +113,12 @@ kalacak." Kişisel bir değişikliği kalıcı tutmak istiyorsa yeri
   dışına yapılan tek ekleme.
 - **CLAUDE.md:** yeni sürümün `iskelet/CLAUDE.md`'si bu klasördekinden farklıysa
   değiştirme. Farkı göster ve sor.
+- **Kanca ve skill kopyası:** sistem dosyaları yerine konduktan sonra
+  `python sistem/kur.py --sistem-skilleri` çalıştır (Python adı `py` ya da
+  `python3` olabilir). Eksik kancaları ekler, sistem skill'lerinin
+  `.agents/skills/` kopyasını yeniler, kullanıcının ayarlarına dokunmaz.
+  Çıktıdaki `[UYARI]` satırlarını kullanıcıya söyle. Python yoksa bu adımı
+  atla ve söyle.
 
 ## 5b. Geçiş (sadece yeni sürüm isterse)
 

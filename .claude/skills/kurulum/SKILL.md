@@ -1,6 +1,6 @@
 ---
 name: kurulum
-description: İkinci beyni kişiye göre kurar. Sorular tek tek sorulur, her cevap anında references/kurulum-cevaplari.md dosyasına yazılır. Ardından iskelet klasörler oluşturulur ve context/, AGENTS.md, .claude/rules/ ile projects/index.md cevaplara göre doldurulur. Kullanıcı "/kurulum", "kurulumu başlat", "beni tanı", "bilgilerimi güncelle", "kurulumu yeniden yap" dediğinde ya da klasörde henüz AGENTS.md yokken kullan.
+description: İkinci beyni kişiye göre kurar. Sorular tek tek sorulur, her cevap anında references/kurulum-cevaplari.md dosyasına yazılır. Ardından iskelet klasörler oluşturulur, context/, AGENTS.md, hafiza/otomatik/iletisim.md ve projects/index.md cevaplara göre doldurulur, hafıza ve günlük kancaları kurulur. Kullanıcı "/kurulum", "kurulumu başlat", "beni tanı", "bilgilerimi güncelle", "kurulumu yeniden yap" dediğinde ya da klasörde henüz AGENTS.md yokken kullan.
 argument-hint: "[guncelle | bolum-adi]"
 ---
 
@@ -27,7 +27,7 @@ Soruların tamamı `${CLAUDE_SKILL_DIR}/sorular.md` dosyasında. Röportaja baş
 - **Her cevabı anında yaz.** Kullanıcının cevabını hemen
   `references/kurulum-cevaplari.md` dosyasına ekle. Oturum yarıda koparsa
   kaldığın yerden devam edebilmen buna bağlı.
-- **İsme gelen eki Türkçe ses uyumuna göre yaz:** Ahmet'in, Ayşe'nin, Elif'i,
+- **İsme gelen eki Türkçe ses uyumuna göre yaz:** Mert'in, Ayşe'nin, Elif'i,
   Umut'un. Emin değilsen eki gerektirmeyen bir cümle kur.
 - **Kullanıcının sözlerini koru.** Cevapları özetleyip başka kelimelerle yeniden
   yazma. Context dosyaları kısa ve düzenli olabilir, ama ham cevaplar dosyası
@@ -41,7 +41,7 @@ cümleyle söyle.
 
 | Mod | Ne zaman | Ne yaparsın |
 |---|---|---|
-| **İlk kurulum** | Cevaplar dosyası yok. Kökte sadece şablonla gelenler var: `README.md`, `.gitignore`, `.gitattributes`, `.git`, `.claude/`, `LICENSE` (editörün açtığı `.vscode/` da sayılmaz) | Tüm adımlar sırayla |
+| **İlk kurulum** | Cevaplar dosyası yok. Kökte sadece şablonla gelenler var: `README.md`, `.gitignore`, `.gitattributes`, `.git`, `.claude/`, `sistem/`, `LICENSE` (editörün açtığı `.vscode/` da sayılmaz) | Tüm adımlar sırayla |
 | **Devam** | Cevaplar dosyası var, başında `Durum: yarım` yazıyor | Cevaplanmamış ilk sorudan devam et, önceki cevapları tekrar sorma |
 | **Güncelleme** | Cevaplar dosyası var, `Durum: tamamlandı` | Bölümleri listele, hangisinin değiştiğini sor, sadece onu sor ve sadece etkilenen dosyaları güncelle (aşağıda) |
 | **Dolu klasör** | Cevaplar dosyası yok ama kökte başka dosya/klasör var | İlk kurulum gibi, ama 3. adımdaki "dolu klasör" kuralları geçerli |
@@ -101,14 +101,9 @@ Dosyalardaki `{{...}}` alanlarını cevaplarla doldur. Doldururken:
   `web-sitesi-yenileme`). Şablon olarak `iskelet/references/sablonlar/DEVAM.md`
   kullan. Bildiğin kadarını doldur, bilmediğin alana "(henüz yok)" yaz.
 - **İletişim kuralları.** Kullanıcının yasakları (emoji, belli kelimeler,
-  uzunluk) `.claude/rules/iletisim.md` dosyasına gider. AGENTS.md'de bunun
-  sadece tek cümlelik özeti durur.
-- **`.claude/` izni.** Claude Code `.claude/` klasörüne yazmayı korur ve
-  sohbetteki "izin veriyorum" sözü yetmez, ayrı bir onay penceresi açılır. Bu
-  dosyayı yazmadan hemen önce kullanıcıya şunu söyle: "Şimdi kural dosyasını
-  yazacağım. Claude Code bu klasör için ayrıca izin soracak, onayla." Yazma
-  yine reddedilirse dosyanın içeriğini kullanıcıya göster ve kapanışta
-  eksik olarak belirt.
+  uzunluk) `hafiza/otomatik/iletisim.md` dosyasına gider. AGENTS.md'de bunun
+  sadece tek cümlelik özeti durur. Kullanıcının bütün kalıcı kuralları bu
+  klasörde toplanır; Claude Code, Codex ve agy aynı yeri okur.
 
 **Dolu klasör kuralları:**
 - Var olan dosya ve klasörlere dokunma. Hepsini listele, sonra
@@ -125,12 +120,38 @@ Dosyalardaki `{{...}}` alanlarını cevaplarla doldur. Doldururken:
 | A Sen | `context/me.md`, AGENTS.md'nin ilk satırları |
 | B İşin | `context/work.md` |
 | C Şimdi | `context/current-priorities.md`, `context/goals.md`, `projects/index.md` |
-| D Konuşma | `.claude/rules/iletisim.md`, AGENTS.md'deki özet cümle, `context/writing-samples.md` |
+| D Konuşma | `hafiza/otomatik/iletisim.md`, AGENTS.md'deki özet cümle, `context/writing-samples.md` |
 | E Devret | `context/work.md` "Tekrar eden işler" bölümü |
 
 Değişen her dosyanın eski hâlini önce `archives/kurulum-oncesi-{tarih}/` altına
 kopyala. Eski cevapları da `references/kurulum-cevaplari.md` içinde silme;
 yeni cevabı altına `(güncellendi {tarih})` notuyla ekle.
+
+## 3b. Hafıza ve günlük kancaları
+
+İskelet kopyalanıp doldurulduktan sonra (bu sıra önemli: önce iskelet) şu
+betiği çalıştır. Python adı bilgisayara göre değişir; sırayla `python`, `py`,
+`python3` dene:
+
+`python sistem/kur.py`
+
+Betik var olan hiçbir ayarı silmez, eksikleri ekler, tekrar çalıştırmak
+güvenlidir. Ne yapar: Claude'un hafızasını `hafiza/otomatik/`'e bağlar, oturum
+kancalarını kurar (Claude, Codex, agy), skill'leri Codex ve agy için
+`.agents/skills/`'e kopyalar, `gunluk/` klasörünü açar. Komut izni sorulursa
+kullanıcıya "hafıza ayarını kuruyorum, onayla" de.
+
+Çıktıyı kullanıcıya sade dille özetle, `[UYARI]` satırlarını atlamadan:
+- **Python bulunamadıysa:** kurulumun geri kalanı çalışır, sadece günlük
+  yazılmaz. python.org'dan kurmasını, kurarken "Add python.exe to PATH"
+  kutusunu işaretlemesini, sonra "hafızayı kur" demesini söyle (betiği o
+  zaman yeniden çalıştırırsın).
+- **'claude' komutu yoksa:** betiğin verdiği kurulum komutunu göster. Günlük
+  bu komut olmadan yazılmaz; geri kalan her şey çalışır.
+- **Codex kullanıyorsa:** Codex'te bir kez `/hooks` yazıp kancaları onaylaması
+  gerekir. Kullanmıyorsa bundan bahsetme.
+
+Betik hata verirse çıktıyı göster, kurulumu durdurma, kapanışta eksik olarak say.
 
 ## 4. Git
 
@@ -146,9 +167,13 @@ yeni cevabı altına `(güncellendi {tarih})` notuyla ekle.
   (`ahmetdemircid/ikinci-beyin`) gösteriyorsa sormadan
   `git remote remove origin` çalıştır ve tek cümleyle söyle: "Klasörün
   şablonla bağlantısını kestim, artık sadece sana ait."
-- `.gitignore` içinde şu üç satır yoksa ekle (dosya yoksa oluştur):
-  `CLAUDE.local.md`, `.claude/settings.local.json`, `.env`. Bunlar kişisel
-  ayar ve şifre dosyaları, paylaşılan kayda girmemeli.
+- `.gitignore` içinde şu satırlar yoksa ekle (dosya yoksa oluştur):
+  `CLAUDE.local.md`, `.claude/settings.local.json`, `.env`, `.codex/hooks.json`,
+  `.agents/hooks.json`, `sistem/hafiza/durum.json`, `sistem/hafiza/kuyruk*.jsonl`,
+  `sistem/hafiza/kayit.log`, `sistem/hafiza/parca-ozetleri/`, `sistem/hafiza/.kilit`,
+  `__pycache__/`. İlk üçü kişisel ayar ve şifre dosyaları; kanca dosyalarında
+  bu bilgisayarın klasör yolu var; `sistem/hafiza/` altındakiler özetçinin
+  çalışma dosyaları.
 - Commit'i kendin atma. Kullanıcıya sor: "İlk kaydı alayım mı? Bundan sonra
   bir şey bozulursa bu noktaya dönebilirsin." Evet derse
   `git add -A && git commit -m "Ikinci beyin kuruldu"` çalıştır.
@@ -189,8 +214,9 @@ Kullanıcıya sırayla şunları göster:
 
 4. Bundan sonra nasıl kullanılır, dört satırla (komut ezberlemek gerekmez):
    - Oturuma "nerede kalmıştık" ya da "bugün ne yapıyoruz" diye başla.
-   - Çalışırken kaydı ben tutarım: proje ilerleyince, karar alınınca o anda
-     dosyalara yazarım. İstersen sonunda "bugünlük bu kadar" de, kalanı toparlarım.
+   - Çalışırken projenin durumunu ben tutarım. Oturumu kapatınca o oturumda
+     ne yapıldığı günlüğe kendiliğinden yazılır; sonra "en son ne yaptık" diye
+     sorabilirsin. İstersen kapatmadan önce "bugünlük bu kadar" de.
    - Bir işi ikinci kez yaptığımızda onu kalıcı hale getirmeyi öneririm;
      sonra tek cümleyle yaparım.
    - Haftada bir "klasörü kontrol et" de.

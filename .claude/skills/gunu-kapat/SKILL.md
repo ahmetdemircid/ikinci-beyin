@@ -1,127 +1,81 @@
 ---
 name: gunu-kapat
-description: Çalışma oturumunu kapatır. Oturum içinde anında yazılmamış bir şey kaldıysa projelerin DEVAM.md dosyalarına yazar, kararları onayla decisions/log.md'ye ekler, değişen öncelikleri günceller, tekrar eden işi ve tekrar eden düzeltmeyi yakalar, sonunda Git kaydı alır. Kullanıcı "/gunu-kapat", "günü kapat", "oturumu kapat", "bugünlük bu kadar", "kapatıyorum", "yarın devam ederiz" dediğinde kullan.
+description: Çalışma oturumunu kapatır. Bu oturumda çalışılan projelerin DEVAM.md dosyasındaki "Şu an" bölümünü ve durum tablosunu günceller, sonra Git kaydı alır. Günlüğü yazmaz, onu oturum kapanınca arka plandaki özetçi yazar. Kullanıcı "/gunu-kapat", "günü kapat", "oturumu kapat", "bugünlük bu kadar", "kapatıyorum", "yarın devam ederiz" dediğinde kullan.
 ---
 
 # Günü kapat
 
-Amacın, yarın açılacak yeni oturumun bugün konuşulanı bilmeden kaldığı yerden
-devam edebilmesi. Yeni oturum bu konuşmayı göremez, sadece dosyaları görür.
-Dosyaya yazılmayan şey kaybolur.
+Amacın, yarın açılacak yeni oturumun kaldığı yerden devam edebilmesi. Yeni
+oturum bu konuşmayı göremez; DEVAM.md'yi ve günlüğü görür.
 
-Kurallar gereği kayıt oturum boyunca anında tutulur, bu skill bir güvenlik
-ağıdır. Her adımda önce dosyaya bak: zaten yazılmış olanı tekrar yazma, sadece
-eksik kalanı tamamla. Her şey zaten yazılmışsa bunu söyle ve sadece Git
-kaydını al.
+İş bölümü:
+- **Ne yapıldı** kaydını oturum kapanınca arka plandaki özetçi `gunluk/`'e
+  yazar. Sen günlüğe yazma, DEVAM'a da "ne yapıldı" yazma.
+- **Şu anki durum ve sıradaki adım** senin işin: DEVAM.md.
+- Karar, ret ve not zaten çalışırken anında yazılıyor (AGENTS.md "Kayıt").
+  Burada sadece eksik kalan varsa tamamla, zaten yazılmışı tekrar yazma.
+
+Her şey zaten günceliyse bunu söyle ve sadece Git kaydını al.
 
 ## Kesin kurallar
 
-- **Hiçbir şey silme.** DEVAM.md'de eskiyen bilgi "Geçmiş" bölümüne iner,
-  silinmez. `decisions/log.md`'de eski kayıt değiştirilmez.
+- **Hiçbir şey silme.** DEVAM.md'de eskiyen bilgi aynı klasördeki `GECMIS.md`'nin
+  en üstüne taşınır.
 - **Uydurma.** Sadece bu oturumda gerçekten konuşulan ya da yapılan şeyi yaz.
-  Emin olmadığın bir şeyi "yapıldı" diye yazma, kullanıcıya sor.
-- **Kararı kendin uydurma.** Kullanıcının söylemediği bir kararı ya da
-  gerekçeyi onay almadan günlüğe yazma (ayrıntı 3. adımda).
+- **Öneri karar değildir.** Kullanıcının onaylamadığı öneri "Kararlar"a girmez,
+  durum tablosunda "(öneri)" diye durur.
 
-## 1. Bu oturumda ne oldu?
+## 1. Hangi projeler?
 
-İki kaynağa bak:
-1. **Bu konuşma:** hangi projelerde çalışıldı, ne bitti, ne yarım kaldı,
-   hangi karar alındı, kullanıcı seni neyde düzeltti.
-2. **Git varsa:** `git status --short` ve `git diff --stat`. Hangi dosyalar
-   değişti?
-
-Konuşmada hiç iş yapılmadıysa ve değişen dosya da yoksa kullanıcıya
+Bu konuşmada hangi projelerde çalışıldığına bak. Git varsa `git status --short`
+ile değişen dosyaları da gör. Hiç iş yapılmadıysa ve değişen dosya yoksa
 "kapatılacak bir şey yok" de ve dur.
 
-## 2. DEVAM.md dosyalarını güncelle
+## 2. DEVAM.md'yi güncelle
 
-Bu oturumda dokunulan her proje için `projects/{ad}/DEVAM.md`:
-- "Son güncelleme" tarihini bugünün tarihi yap.
-- "Şu anki durum" bölümünü yeni duruma göre yeniden yaz.
-- "Sıradaki adım" bölümüne tek, somut bir adım yaz. "Devam et" yazma. Neyin,
-  hangi dosyanın, hangi bölümünün yapılacağını yaz.
-- "Açık kararlar" bölümünde kapanan kararı sil ve "Geçmiş"e taşı, yeni açılan
-  kararı ekle.
-- "Geçmiş" bölümünün en üstüne tarihli tek satır ekle: bugün ne oldu.
+Çalışılan her proje için `projects/{ad}/DEVAM.md`. Biçim
+`references/sablonlar/DEVAM.md`:
+
+- **Şu an:** "İş" ve "Sıradaki adım" satırlarını yeni duruma göre yeniden yaz.
+  Sıradaki adım tek ve somut olsun ("devam et" değil, hangi dosyanın hangi
+  bölümü) ve kimin yapacağı yazsın. "Bu oturumda oku"ya yarınki oturumun
+  okuması gereken en fazla 3 dosyayı yaz. "Güncellendi"ye bugünün tarih ve saati.
+- **Durum tablosu:** değişen satırın durumunu, son dosyasını, kullanıcının
+  sözünü ve açık işini güncelle. Değişmeyen satıra dokunma.
+- **Kararlar:** bu oturumda kullanıcının açıkça verdiği proje kararı eksikse ekle.
+
+Dosya eski biçimdeyse (Şu an bölümü yok) kendiliğinden çevirme. Eski
+biçimdeki "Şu anki durum" ve "Sıradaki adım" bölümlerini güncelle, kullanıcıya
+bir kez "DEVAM'ı yeni biçime çevireyim mi?" diye sor.
 
 Proje bittiyse durumunu "bitti" yap, klasörü `archives/{ad}-{YYYYAAGG}/` altına
-taşı ve `projects/index.md`'de satırı "Bitenler" tablosuna indir, "Nerede"
-sütununa yeni yolu yaz. Bu oturumda zaten yapıldıysa tekrar yapma.
+taşı ve `projects/index.md`'de satırı "Bitenler" tablosuna indir. Yeni açılan
+proje klasörünün `DEVAM.md`'si ya da `projects/index.md` satırı yoksa ikisini
+de oluştur. `projects/index.md`'de dokunulan projelerin "Son dokunuş" tarihini
+güncelle.
 
-Bu oturumda yeni bir proje klasörü açıldıysa ve `DEVAM.md`'si ya da
-`projects/index.md` satırı yoksa ikisini de oluştur. Şablon:
-`references/sablonlar/DEVAM.md`.
-
-`projects/index.md`'de dokunulan projelerin "Son dokunuş" tarihini güncelle.
-
-## 3. Kararlar
-
-Bu oturumda alınan önemli kararları listele. Önemli karar: fiyat, tarih,
-hedef, bir işi bırakma ya da başlatma, bir yöntemi seçme. Günlük küçük
-tercihler karar değildir.
-
-Her kararı şu biçimde kullanıcıya göster:
-`[YYYY-AA-GG] KARAR: ... | GEREKÇE: ... | BAĞLAM: ...`
-
-- Bu oturumda zaten günlüğe yazılmış kararı tekrar yazma.
-- Kullanıcı kararı ve gerekçesini açıkça söylediyse onay beklemeden ekle.
-  Gerekçeyi onun sözleriyle yaz, kendi yorumunu ekleme.
-- Kararı ya da gerekçeyi sen çıkarıyorsan önce göster ve sor, onaylananları
-  ekle.
-
-Kayıtlar `decisions/log.md` dosyasının en altına eklenir.
-
-Bu oturumda kullanıcının reddettiği fikir, örnek ya da yaklaşım
-`decisions/reddedilenler.md`'ye yazılmadıysa ekle (biçim AGENTS.md'de).
-
-## 4. Bağlam
-
-- Öncelik değiştiyse `context/current-priorities.md`'yi güncelle. Eski listeyi
-  kelimesi kelimesine `archives/oncelikler-gecmisi.md` dosyasının en üstüne
-  "## {tarih}" başlığıyla ekle (dosya yoksa oluştur), sonra
-  current-priorities'te sadece yeni liste kalsın.
-- Çeyrek hedefi değiştiyse `context/goals.md`'yi güncelle. Eski hâli aynı
-  şekilde `archives/hedefler-gecmisi.md`'ye taşı.
-- Geçmişte kalmış ve gerçekleştiği konuşmada doğrulanan tarihleri "Yaklaşan
-  tarihler"den çıkar, ilgili DEVAM.md'nin "Geçmiş"ine yaz.
-
-## 5. Tekrarları yakala
-
-Sadece öner, kendin skill ya da kural yazma.
-
-- **Tekrar eden düzeltme:** kullanıcı seni bu oturumda bir konuda düzelttiyse
-  ve aynı düzeltme daha önce de olduysa (`.claude/rules/` ya da konuşma),
-  `.claude/rules/` altına kalıcı kural yazmayı öner. Kuralın taslağını göster.
-- **Tekrar eden iş:** bu oturumda kullanıcı için tamamlanan işler
-  `references/is-gunlugu.md`'ye yazılmadıysa önce ekle. Sonra bak: aynı iş
-  günlükte en az iki kez geçiyor, skill'i yok, satırında `sorma` yazmıyor ve
-  bu oturumda zaten sorulmadıysa kalıcı hale getirmeyi bir kez öner. Kaçıncı
-  kez yapıldığını söyle. Evet derse `/beceri-ogren`'i yeni oturumda
-  çalıştırmayı öner (bu oturum kapanıyor).
-
-## 6. Kaydet
+## 3. Kaydet
 
 Git yoksa bu adımı atla ve raporda söyle.
 
 Git varsa:
 1. `git add -A`
 2. `git commit -m "Gun kapanisi {YYYY-AA-GG}: {en fazla 6 kelimelik ozet}"`
-3. Commit Git'te ad/e-posta olmadığı için reddedilirse sormadan `/kurulum` skill'indeki
-   gibi sadece bu klasör için tanımla ve tekrar dene.
+3. Commit Git'te ad/e-posta olmadığı için reddedilirse sormadan `/kurulum`
+   skill'indeki gibi sadece bu klasör için tanımla ve tekrar dene.
 
 `git push` yapma. Kayıt bu bilgisayarda kalır.
 
-## 7. Rapor
+## 4. Rapor
 
 Kısa tut:
 
 ```
 **Kapatıldı: {tarih}**
 
-- Güncellenen: {dosyalar, birer satır}
-- Günlüğe eklenen karar: {sayı}
+- Güncellenen: {DEVAM dosyaları, birer satır}
 - Yarın ilk iş: {en önemli projenin "Sıradaki adım"ı}
-- Öneri: {varsa kural/skill önerisi}
 - Git: {commit kısa kimliği ya da "Git yok"}
 ```
+
+Son satır: "Günlük, oturumu kapatınca arka planda yazılacak."

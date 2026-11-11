@@ -1,3 +1,11 @@
 CLAUDE.local.md
 .claude/settings.local.json
 .env
+.codex/hooks.json
+.agents/hooks.json
+sistem/hafiza/durum.json
+sistem/hafiza/kuyruk*.jsonl
+sistem/hafiza/kayit.log
+sistem/hafiza/parca-ozetleri/
+sistem/hafiza/.kilit
+__pycache__/

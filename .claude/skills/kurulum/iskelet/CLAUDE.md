@@ -8,3 +8,4 @@ Her oturumda yüklenen bağlam dosyaları:
 @context/work.md
 @context/current-priorities.md
 @context/goals.md
+@hafiza/otomatik/iletisim.md
