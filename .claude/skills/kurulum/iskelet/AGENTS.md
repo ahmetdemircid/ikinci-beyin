@@ -96,6 +96,8 @@ tutarsın, değişiklik olduğu anda:
   Giriş dosyası olmayan klasör kaybolur.
 - **Kullanıcı bir karar verip gerekçesini söyleyince** hemen
   `decisions/log.md`'ye yaz. Kararı ya da gerekçeyi sen çıkarıyorsan önce sor.
+  Birden fazla seçenek varken kısa bir "evet", "tamam", "başlayalım" karar
+  sayılmaz; hangi seçenek olduğunu sor, sorana kadar hiçbir yere karar yazma.
 - **Öncelik ya da tarih değişince** `context/current-priorities.md`'yi güncelle.
 - **Anlamlı bir iş bitince** Git kaydı al: `git add -A` ve kısa bir
   `git commit`. `git push` yapma, kayıt bu bilgisayarda kalır. Git'te ad ve
