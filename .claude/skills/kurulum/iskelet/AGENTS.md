@@ -83,6 +83,14 @@ tutarsın, değişiklik olduğu anda:
   yapıldığını yazma, o günlüğün işi. Senin önerin karar değildir: tabloda
   "(öneri)" diye durur, kullanıcı onaylarsa "Kararlar"a geçer. Eskiyen kısım
   aynı klasördeki `GECMIS.md`'nin en üstüne taşınır.
+- **Karar çıkmasa da** bir projede seçenekler konuşulup kullanıcının cevabı
+  beklenince "Şu an" bölümüne nerede kalındığını yaz ("niş seçimi: 3 seçenek
+  konuşuldu, karar bekliyor"). Kullanıcı yeni oturumda "nerede kalmıştık"
+  dediğinde cevap buradan gelir. Kullanıcı "DEVAM'a yaz" derse aynısını hemen yap.
+- **DEVAM'ı yazarken:** yazmadan hemen önce dosyayı yeniden oku, dosyayı
+  baştan yazma, sadece değişen satırları düzenle. Aynı projede başka bir
+  oturum da çalışıyor olabilir; onun yazdığı satırları silme. Düzenleme
+  tutmazsa dosya arada değişmiştir: yeniden oku, iki bilgiyi birleştir.
 - **Yeni bir proje konuşulunca** `projects/{ad}/DEVAM.md` oluştur (şablon:
   `references/sablonlar/DEVAM.md`) ve `projects/index.md`'ye bir satır ekle.
   Giriş dosyası olmayan klasör kaybolur.

@@ -54,6 +54,7 @@ Komut ezberlemen gerekmez, normal konuş:
 |---|---|
 | "Nerede kalmıştık?", "Bugün ne yapıyoruz?" | Yaklaşan tarihleri, projelerin sıradaki adımını ve tek bir "sıradaki iş" önerisini söyler |
 | Normal çalışırsın | Proje ilerleyince, karar alınınca Claude o anda ilgili dosyaya yazar. Oturumu kapatınca ne yapıldığı günlüğe kendiliğinden yazılır |
+| "DEVAM'a yaz" (aynı işe yeni oturumda devam edeceksen, geçmeden önce) | Projenin nerede kaldığını o anda yazar. Yeni oturumda "nerede kalmıştık" dediğinde oradan devam eder. Günlük oturum kapanınca ya da sonraki açılışlarda yazıldığı için birkaç dakika önce bıraktığın oturum henüz günlükte olmayabilir |
 | "En son ne yaptık?", "Dün ne yaptık?" | Günlükten cevap verir |
 | "Bundan sonra hep şöyle yap" | Kalıcı kural olarak hafızaya yazılır. Konuşmada geçen kural adaylarını ertesi gün "onaylıyor musun" diye sorar, onaysız uygulamaz |
 | Bir işi ikinci kez yaptırırsın | Claude "kalıcı hale getireyim mi?" diye bir kez sorar. Evet dersen işi skill'e çevirir, yeni bir oturumda dener, bundan sonra tek cümleyle yapar. İstersen sen de "bunu kalıcı yap" diyebilirsin |
