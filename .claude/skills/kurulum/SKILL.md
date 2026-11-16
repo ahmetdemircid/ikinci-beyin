@@ -71,18 +71,35 @@ zaten yazılı olan şeyi sormamak, sadece eksik ya da eski kalanı sormak.
     rakamsız hedef, sıradaki adımı yazmayan proje, bugünden önce kalmış tarih,
     iki dosyada çelişen bilgi). Dosyada yazanı göster, sadece eksik kısmı sor
     ("Topluluk açılışı 20 Kasım yazıyor, hâlâ geçerli mi?").
-  - **Yok:** normal sor.
-- **Röportajdan önce tek mesajla özetle:** "Dosyalarından şunları öğrendim:"
-  diye madde madde yaz (her maddenin yanında hangi dosyadan geldiği). Sonra
-  "Bunları sormayacağım. Eksik ya da eski kalan {N} şey için soru soracağım."
-  de. Kullanıcı bir maddeyi düzeltirse cevaplar dosyasına düzeltilmiş hâliyle
-  yaz. Maddeleri tek tek onaylatma.
+  - **Yok:** normal sor. Bir soru dosyada geçiyorsa "yok" grubuna giremez.
+- **Gruplarken şu üç tuzağa düşme:**
+  - Dosyada yazan ama eski görünen bilgi (geçmiş tarih, geçmiş çeyreğin
+    hedefi, "başlamadı" yazan ama aradan zaman geçmiş durum) **yarımdır**,
+    sıfırdan sorulmaz: "Şu yazıyor: ..., hâlâ geçerli mi?"
+  - "Güncel olduğundan emin değilim", "doğrulanmadı" diye not düştüğün her
+    bilgi **yarımdır**, sorulur. Hem emin olmayıp hem sormamak çelişkidir.
+  - Rakip tablosu, satılan ürünler, proje klasörleri gibi dosyada liste olarak
+    duran bilgi **yazılıdır**, sadece eksik sütunu sorulur.
+- **Röportajdan önce tek mesajla özetle.** Mesajın düzeni sabittir:
+  1. "Dosyalarından şunları öğrendim:" ve altında **içerikle** madde madde
+     liste: "Adın Elif, kafelere menü tasarlıyorsun (hakkimda.md)". Soru kodu
+     (A1, B2...) kullanıcıya hiçbir mesajda gösterilmez; kodlar sadece
+     cevaplar dosyası içindir. "A1, A2, B1 yazılı" gibi bir sayım özet değildir.
+  2. "Eski ya da eksik görünenler:" ve altında dosyada yazanla birlikte yarım
+     maddeler ("Topluluk açılışı 20 Kasım yazıyor, geçerli mi?" gibi).
+  3. "Bunları sormayacağım. {N} soru soracağım, yaklaşık {N} dakika."
+  4. En sonda, ayrı satırda, tek başına ilk soru.
+  Bu mesajda teknik durum (Git, Python, betik, dosya kopyalama, ağ) ve ara
+  anlatım ("dosyaları okudum", "ağ takıldı") olmaz; teknik kontroller sessiz
+  yapılır, sorun varsa kapanışta söylenir. Kullanıcı bir maddeyi düzeltirse
+  cevaplar dosyasına düzeltilmiş hâliyle yaz. Maddeleri tek tek onaylatma.
 - Proje klasörleri C3'ün cevabıdır: her klasör bir proje adayıdır. Sadece
   durumunu ya da sıradaki adımını yazmayanları sor.
 
 ## 2. Röportaj
 
-Başlamadan önce kullanıcıya üç şey söyle, kısaca:
+Başlamadan önce kullanıcıya üç şey söyle, kısaca (dolu klasörde bunlar 1b
+mesajının 3. maddesine girer, ayrı mesaj olmaz):
 - Kaç soru kaldığını (1b'de yazılı bulunanlar düşülmüş hâliyle) ve yaklaşık
   süreyi (soru başına bir dakika).
 - Düzgün cümle kurmasına gerek olmadığını, konuşur gibi yazabileceğini.
@@ -135,18 +152,33 @@ Dosyalardaki `{{...}}` alanlarını cevaplarla doldur. Doldururken:
   Klasör adı küçük harf, tireli ve Türkçe karaktersiz olsun (ör.
   `web-sitesi-yenileme`). Şablon olarak `iskelet/references/sablonlar/DEVAM.md`
   kullan. Bildiğin kadarını doldur, bilmediğin alana "(henüz yok)" yaz.
+  Dolu klasörde projenin kendi klasörü ve giriş dosyası (`DEVAM`, `README`,
+  plan) zaten varsa `projects/` altında ikinci bir DEVAM açma: tablodaki
+  "Giriş" sütunu o var olan dosyayı gösterir. Aynı projenin iki durum dosyası
+  olursa biri eskir. Röportajda gelen yeni durumu o dosyaya yazma (kullanıcı
+  dosyasına dokunulmaz); "Durum" sütununa yaz.
 - **İletişim kuralları.** Kullanıcının yasakları (emoji, belli kelimeler,
   uzunluk) `hafiza/otomatik/iletisim.md` dosyasına gider. AGENTS.md'de bunun
   sadece tek cümlelik özeti durur. Kullanıcının bütün kalıcı kuralları bu
-  klasörde toplanır; Claude Code, Codex ve agy aynı yeri okur.
+  klasörde toplanır; Claude Code, Codex ve agy aynı yeri okur. **Bir kural tek
+  yerde durur:** iletisim.md'de olan kural AGENTS.md'de tekrar yazılmaz.
 
 **Dolu klasör kuralları:**
 - Var olan dosya ve klasörlere dokunma. Hepsini listele, sonra
   `projects/index.md`'nin altına "Kurulumdan önce vardı" başlıklı bir tabloyla
   yazdıkları yerde kaydet. Taşıma önerin varsa sadece öner, kendin taşıma.
 - Kökte zaten `CLAUDE.md` ya da `AGENTS.md` varsa önce arşive kopyala. Sonra
-  eski dosyadaki kişisel kuralları yeni dosyanın "Kullanıcının eklediği kurallar"
-  bölümüne (sistem işaretlerinin üstüne) olduğu gibi taşı ve neyi taşıdığını kullanıcıya göster.
+  eski dosyadaki kişisel kuralları kelimesi kelimesine, ikiye ayırarak taşı:
+  - **Konuşma kuralları** (ton, biçim, uzunluk, emoji, benzetme, itiraz,
+    tarih kullanımı) `hafiza/otomatik/iletisim.md`'ye, başlıklarıyla birlikte.
+    Röportajdaki D cevapları bunların altına eklenir; aynı kuralı ikinci kez
+    kendi cümlenle yazma.
+  - **Geri kalanlar** (dosya yeri, proje, araç kuralları) AGENTS.md'deki
+    "Kullanıcının eklediği kurallar" bölümüne (sistem işaretlerinin üstüne).
+    Bu grup boşsa bölüme "(eski dosyadaki kuralların hepsi konuşma kuralıydı,
+    `hafiza/otomatik/iletisim.md`'de)" yaz.
+  Kopyalarken dosya başındaki görünmez BOM karakterini (U+FEFF) at; yoksa
+  ilk başlık bozuk çıkar. Neyi nereye taşıdığını kullanıcıya kapanışta göster.
 
 **Güncelleme modunda** sadece değişen bölümün dosyalarını yeniden yaz:
 
@@ -209,8 +241,8 @@ Betik hata verirse çıktıyı göster, kurulumu durdurma, kapanışta eksik ola
   `__pycache__/`. İlk üçü kişisel ayar ve şifre dosyaları; kanca dosyalarında
   bu bilgisayarın klasör yolu var; `sistem/hafiza/` altındakiler özetçinin
   çalışma dosyaları.
-- Commit'i kendin atma. Kullanıcıya sor: "İlk kaydı alayım mı? Bundan sonra
-  bir şey bozulursa bu noktaya dönebilirsin." Evet derse
+- Commit'i kendin atma, bu adımda da sorma: soru kapanış mesajının son
+  maddesidir (6. adım, 5. madde). Evet derse
   `git add -A && git commit -m "Ikinci beyin kuruldu"` çalıştır.
 - Commit "Please tell me who you are" hatasıyla reddedilirse Git'te ad ve
   e-posta tanımlı değildir. Kullanıcıya sorma: kayıtlar bu bilgisayarda kalır,
@@ -228,12 +260,22 @@ Kullanıcıya göstermeden önce kendin kontrol et:
    iddiayı sen uydurmuşsun.
 3. `CLAUDE.md` içindeki her `@` yolu gerçekten var olan bir dosyayı gösteriyor
    mu?
-4. AGENTS.md 200 satırın altında mı? `<!-- sistem:basla -->` ve
+4. AGENTS.md 200 satırın altında mı? Değilse sadece haber verme, düzelt:
+   iletisim.md'de de duran kuralı AGENTS.md'den sil; hâlâ uzunsa
+   "Kullanıcının eklediği kurallar"ı kelimesi kelimesine
+   `hafiza/otomatik/kurallar.md`'ye taşı, bölümde tek satırlık yönlendirme
+   bırak, `hafiza/otomatik/MEMORY.md`'ye ve `CLAUDE.md`'ye (`@hafiza/otomatik/kurallar.md`)
+   satır ekle. Sistem bölümünü kısaltma. `<!-- sistem:basla -->` ve
    `<!-- sistem:bitir -->` işaretleri yerinde mi? Bu işaretleri silme ya da
    arasına kişisel bilgi yazma: güncelleme o bölümü yeniden yazar.
+5. Aynı proje için iki durum dosyası var mı (`projects/x/DEVAM.md` ve
+   kullanıcının kendi klasöründeki DEVAM)? Varsa `projects/` altındakini
+   açma, satırı kullanıcının dosyasına bağla.
 
 ## 6. Kapanış
 
+Kapanış mesajında da teknik iç ayrıntı (betik adı, satır sayısı, şablon,
+kanca dosyası) olmaz; düzeltmen gereken şeyi kullanıcıya rapor etme, düzelt.
 Kullanıcıya sırayla şunları göster:
 
 1. Oluşan klasör ağacı ve her dosyanın ne içerdiği, birer satırla.
@@ -255,8 +297,11 @@ Kullanıcıya sırayla şunları göster:
    - Bir işi ikinci kez yaptığımızda onu kalıcı hale getirmeyi öneririm;
      sonra tek cümleyle yaparım.
    - Haftada bir "klasörü kontrol et" de.
+5. Git kuruluysa ve henüz commit yoksa (`git log` hata veriyorsa) mesajı bu
+   soruyla bitir, bu maddeyi atlama: "İlk kaydı alayım mı? Bundan sonra bir
+   şey bozulursa bu noktaya dönebilirsin." Cevabı bekle.
 
-Bu dört maddeyi gösterdikten sonra 7. adıma geç.
+Cevaptan sonra 7. adıma geç.
 
 ## 7. Tekrar eden işler için teklif
 
