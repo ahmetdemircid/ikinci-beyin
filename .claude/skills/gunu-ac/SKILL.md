@@ -29,7 +29,10 @@ Sırayla ve sadece bunları oku. Proje klasörlerini baştan sona tarama.
 7. `runs/` altında son 7 güne ait kayıt varsa onların sonuç satırları.
 8. `references/gelen-kutusu.md`: henüz dağıtılmamış not sayısı ve en eski
    notun tarihi.
-9. `references/kural-adaylari.md`: `(durum: bekliyor)` olan satırlar.
+9. `references/kural-adaylari.md`: `(durum: bekliyor)` olan satırlar. "yok"
+   satırlarını, aynı adayın tekrarlarını ve `hafiza/otomatik/` altında zaten
+   yazılı olan kuralı gösterme: kullanıcının kurulumda ya da daha önce söylediği
+   kural bir daha onaya gelmez.
 10. `gunluk/` içindeki en yeni tarihli dosyanın (`YYYY-AA-GG.md`) son kaydı (sadece başlığı ve "Açık
    işler"i). Klasör boşsa geç.
 

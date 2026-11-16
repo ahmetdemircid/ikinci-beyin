@@ -292,13 +292,47 @@ def yerel_zaman(iso):
 
 
 ADAY_BOLUMU = re.compile(r"###\s*Kural adaylar[ıi]\s*\n(.*)", re.S | re.I)
+HAFIZA = KASA / "hafiza" / "otomatik"
+ONAY_EKI = re.compile(r"\s*\([^()]*onay bekliyor[^()]*\)", re.I)
+TIRNAK = re.compile(r"[\"“”]([^\"“”]{3,})[\"“”]")
+
+
+def _sade(s):
+    return " ".join(re.sub(r"[^\w]+", " ", s.casefold()).split())
+
+
+def adaylari_suz(adaylar, kurulum):
+    """Kurulum oturumu aday uretmez (kurulum kurallari dogrudan hafizaya yazar).
+    'yok', onceki oturumdan aktarilan ve zaten listede/hafizada olan aday yazilmaz."""
+    if kurulum:
+        return []
+    bilinen = []
+    for p in [ADAYLAR, *(sorted(HAFIZA.glob("*.md")) if HAFIZA.exists() else [])]:
+        try:
+            bilinen.append(_sade(p.read_text(encoding="utf-8")))
+        except OSError:
+            pass
+    bilinen = " | ".join(bilinen)
+    kalan, gorulen = [], set()
+    for a in adaylar:
+        a = ONAY_EKI.sub("", a).rstrip()
+        govde = a.lstrip("-").strip()
+        t = TIRNAK.search(govde)
+        anahtar_metin = _sade(t.group(1) if t else govde)
+        if not anahtar_metin or anahtar_metin == "yok" or "önceki oturum" in govde.casefold():
+            continue
+        if anahtar_metin in gorulen or anahtar_metin in bilinen:
+            continue
+        gorulen.add(anahtar_metin)
+        kalan.append(a)
+    return kalan
 
 
 def etiket_oturum(arac, oturum):
     return f"oturum {oturum[:8]}" if arac == "claude" else f"{arac} {oturum[:8]}"
 
 
-def yaz(ozet, zaman, etiket, kimlik, parca_no):
+def yaz(ozet, zaman, etiket, kimlik, parca_no, kurulum=False):
     GUNLUK.mkdir(exist_ok=True)
     gun = GUNLUK / f"{zaman:%Y-%m-%d}.md"
     if not gun.exists():
@@ -316,6 +350,7 @@ def yaz(ozet, zaman, etiket, kimlik, parca_no):
         f.write(f"\n## {zaman:%H:%M} · [{etiket}] · {kimlik} · parça {parca_no}\n\n{govde}\n")
     if es:
         adaylar = [s.strip() for s in es.group(1).splitlines() if s.strip().startswith("-")]
+        adaylar = adaylari_suz(adaylar, kurulum)
         if adaylar:
             ADAYLAR.parent.mkdir(exist_ok=True)
             if not ADAYLAR.exists():
@@ -408,7 +443,8 @@ def oturumu_isle(arac, oturum, dosya, bitti, durum):
             ozet, kul = ozetlet(metin)
             k["parca"] += 1
             zaman, etiket = yerel_zaman(ilk_zaman), proje_etiketi(yollar)
-            govde = yaz(ozet, zaman, etiket, kimlik, k["parca"])
+            kurulum = "kurulum-cevaplari" in metin or any("kurulum-cevaplari" in y for y in yollar)
+            govde = yaz(ozet, zaman, etiket, kimlik, k["parca"], kurulum=kurulum)
             if govde:
                 parca_sakla(arac, oturum, k["parca"], zaman, govde)
             k["etiket"], k["son_parca_zaman"] = etiket, zaman.isoformat(timespec="seconds")

@@ -44,26 +44,61 @@ cümleyle söyle.
 | **İlk kurulum** | Cevaplar dosyası yok. Kökte sadece şablonla gelenler var: `README.md`, `.gitignore`, `.gitattributes`, `.git`, `.claude/`, `sistem/`, `LICENSE` (editörün açtığı `.vscode/` da sayılmaz) | Tüm adımlar sırayla |
 | **Devam** | Cevaplar dosyası var, başında `Durum: yarım` yazıyor | Cevaplanmamış ilk sorudan devam et, önceki cevapları tekrar sorma |
 | **Güncelleme** | Cevaplar dosyası var, `Durum: tamamlandı` | Bölümleri listele, hangisinin değiştiğini sor, sadece onu sor ve sadece etkilenen dosyaları güncelle (aşağıda) |
-| **Dolu klasör** | Cevaplar dosyası yok ama kökte başka dosya/klasör var | İlk kurulum gibi, ama 3. adımdaki "dolu klasör" kuralları geçerli |
+| **Dolu klasör** | Cevaplar dosyası yok ama kökte başka dosya/klasör var | İlk kurulum gibi; önce 1b ile klasörü oku, 3. adımdaki "dolu klasör" kuralları geçerli |
 
 Kullanıcı `$ARGUMENTS` içinde `guncelle` ya da bir bölüm adı verdiyse güncelleme
 moduna doğrudan gir.
 
+Dolu klasörde önce `sistem/kur.py` dosyası klasörde mi bak. Yoksa dosyalar eksik
+indirilmiştir: README'deki "Klasörde kullanıcının kendi dosyaları varsa" adımını
+tekrarla, sonra röportaja geç.
+
+## 1b. Klasörde ne var, oku (dolu klasör)
+
+Kullanıcının kendi dosyaları varsa soru sormadan önce onları oku. Amaç: cevabı
+zaten yazılı olan şeyi sormamak, sadece eksik ya da eski kalanı sormak.
+
+- **Ne okunur:** kökteki ve alt klasörlerdeki metin dosyaları (`.md`, `.txt`).
+  Önce adından ya da ilk satırlarından kişi, iş, plan, hedef, yapılacaklar ya da
+  kural dosyası olduğu anlaşılanlar (ör. hakkımda, notlar, yapılacaklar,
+  `CLAUDE.md`, `AGENTS.md`). Proje klasörlerinde sadece giriş dosyası (`DEVAM`,
+  `README`, durum, plan); uzun metinlerin ilk 150 satırı yeter. Kod, ses, video,
+  görsel okunmaz. En fazla 20 dosya: bağlamı röportaja sakla.
+- **Her soruyu üç gruptan birine koy:**
+  - **Yazılı:** dosyada net cevap var. Sorma. Cevaplar dosyasına dosyadaki
+    cümleyi aynen yaz, sonuna `(kaynak: dosya-adi.md)` ekle.
+  - **Yarım:** cevap var ama eksik, belirsiz ya da eski (tek satırlık not,
+    rakamsız hedef, sıradaki adımı yazmayan proje, bugünden önce kalmış tarih,
+    iki dosyada çelişen bilgi). Dosyada yazanı göster, sadece eksik kısmı sor
+    ("Topluluk açılışı 20 Kasım yazıyor, hâlâ geçerli mi?").
+  - **Yok:** normal sor.
+- **Röportajdan önce tek mesajla özetle:** "Dosyalarından şunları öğrendim:"
+  diye madde madde yaz (her maddenin yanında hangi dosyadan geldiği). Sonra
+  "Bunları sormayacağım. Eksik ya da eski kalan {N} şey için soru soracağım."
+  de. Kullanıcı bir maddeyi düzeltirse cevaplar dosyasına düzeltilmiş hâliyle
+  yaz. Maddeleri tek tek onaylatma.
+- Proje klasörleri C3'ün cevabıdır: her klasör bir proje adayıdır. Sadece
+  durumunu ya da sıradaki adımını yazmayanları sor.
+
 ## 2. Röportaj
 
 Başlamadan önce kullanıcıya üç şey söyle, kısaca:
-- Yaklaşık kaç soru olduğunu ve 15-20 dakika süreceğini.
+- Kaç soru kaldığını (1b'de yazılı bulunanlar düşülmüş hâliyle) ve yaklaşık
+  süreyi (soru başına bir dakika).
 - Düzgün cümle kurmasına gerek olmadığını, konuşur gibi yazabileceğini.
 - Bir soruyu "geç" diyerek atlayabileceğini, sonradan `/kurulum guncelle` ile
   doldurabileceğini.
 
 Sonra `sorular.md`'deki sırayla ilerle. Her soruda şunları uygula:
 
-- **Belirsiz cevabı bir kez somutlaştır.** "Büyümek", "yakında", "daha çok
-  müşteri" gibi ölçülemeyen bir cevapta bir kez rakam, tarih ya da örnek iste
-  ("Ne kadar büyümek, hangi tarihe kadar?"). İkinci kez sorma. Kullanıcı
-  "bilmiyorum" derse cevabı olduğu gibi kabul et ve dosyaya `(belirsiz)`
-  işaretiyle yaz.
+- **Kısa ya da belirsiz cevapta derinleş.** Bu cevaplardan context dosyaları
+  yazılacak; asistan sonraki oturumlarda sadece bunları bilecek. Cevap tek
+  satırsa ya da ölçülemiyorsa ("büyümek", "yakında", "bir proje var") neyin
+  eksik olduğuna bak ve sadece onu hedefleyen bir takip sorusu sor (projenin
+  adı var ama sıradaki adımı yok, hedef var ama tarihi yok, araç var ama ne için
+  kullanıldığı yok). Gerekirse ikinci bir takip sorusu sor, ama aynı şeyi iki
+  kez sorma. Kullanıcı "bu kadar", "bilmiyorum" ya da "sonra" derse bırak,
+  dosyaya `(belirsiz)` işaretiyle yaz. Cevap zaten yeterliyse takip sorusu sorma.
 - **Uzun cevabı bölme.** Bir cevap sonraki soruyu da karşılıyorsa o soruyu sorma,
   "bunu az önce söyledin, şöyle not aldım" de ve aldığın notu göster.
 - **Yazı örneği sorusunda** kullanıcıdan son yazdığı iki metni düzenlemeden

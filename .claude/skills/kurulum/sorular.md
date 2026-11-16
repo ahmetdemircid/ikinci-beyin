@@ -1,7 +1,8 @@
 # Röportaj soruları
 
-Toplam **17 soru**, beş bölüm (A 3, B 4, C 4, D 4, E 2). Kullanıcıya sayı
-söylerken bunu kullan, kendin sayma.
+Toplam **17 soru**, beş bölüm (A 3, B 4, C 4, D 4, E 2). Dolu klasörde 1b'de
+dosyalarda yazılı bulduğun soruları bu sayıdan düş, kullanıcıya kalan sayıyı
+söyle.
 
 Sırayla, tek tek sor. Kod, cevaplar dosyasındaki başlıktır. Parantez içindeki
 not sana yöneliktir, kullanıcıya okuma. Soruları günlük dille, kendi

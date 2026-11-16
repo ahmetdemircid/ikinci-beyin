@@ -14,7 +14,10 @@ Kurallar:
   "- (+N küçük iş daha)" olsun (N en az 1; sığmayan yoksa bu satırı hiç yazma).
 - Kural adayı: kullanıcının ileriye dönük genel bir tercih ya da kural söylediği yer ("bundan sonra",
   "her zaman", "asla", "şunu bir daha yapma" gibi). Asistanın önerisi kural adayı değildir.
-  Kullanıcının kendi sözünü tırnak içinde kısaca alıntıla.
+  Kullanıcının kendi sözünü tırnak içinde kısaca alıntıla. Sadece kullanıcının BU parçada yeni
+  söylediği kural aday olur: kurulum röportajındaki cevaplar, asistanın dosyadan okuyup hatırlattığı
+  kurallar, önceki oturumdan kalan ya da onaylanan adaylar aday değildir. Aday yoksa bu bölüme
+  sadece "- yok" yaz.
 
 Parçada kayda değer bir şey yoksa (karar yok, dosya değişikliği yok, açık iş yok, kural yok;
 sadece selamlaşma, kısa soru-cevap, deneme), bölümleri yazma. Sadece tek satır yaz:

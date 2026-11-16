@@ -86,8 +86,14 @@ klasörün **köküne** gelmeli, alt klasöre değil. Önce klasörde ne olduğu
   `git init`, `git remote add origin https://github.com/ahmetdemircid/ikinci-beyin`,
   `git pull origin master`.
 - **Klasörde kullanıcının kendi dosyaları varsa:** hiçbir dosyanın üstüne yazma.
-  Repoyu klasör dışında geçici bir yere klonla, yalnızca `.claude/skills/`
-  klasörünü buraya kopyala, geçici kopyayı kaldır.
+  Repoyu klasör dışında geçici bir yere klonla. `.git` hariç repodaki her şeyi
+  aynı yoluyla buraya kopyala: `.claude/skills/`, `sistem/` (günlüğü yazan kod,
+  kurulumun sonunda çalıştırılır; Codex ve agy kopyası `.agents/skills/` da bu
+  koddan kurulur), `.gitattributes`, `.gitignore`, `README.md`. Klasörde aynı
+  adla zaten bir dosya varsa onu kopyalama, kullanıcınınki kalır (`.gitignore`
+  satırlarını kurulum kendisi ekler). Kopyaladıktan sonra `sistem/kur.py` ve
+  `.claude/skills/kurulum/SKILL.md` gerçekten klasörde mi bak; yoksa kopyalama
+  eksik kalmıştır, tekrarla. Sonra geçici kopyayı kaldır.
 - **Git kurulu değilse:**
   `https://github.com/ahmetdemircid/ikinci-beyin/archive/refs/heads/master.zip`
   dosyasını indir, içindeki `ikinci-beyin-master/` klasörünün içeriğini köke aç.
